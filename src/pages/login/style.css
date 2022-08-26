@@ -1,0 +1,17 @@
+.login_wrapper {
+   background: var(--bg-secondary);
+}
+
+.login_wrap {
+   height: 78vh;
+   color: var(--color-primary);
+}
+
+.login_1 {
+   width: 300px;
+   margin: 0 auto;
+}
+
+.login_1 span {
+   font-size: 20px;
+}
