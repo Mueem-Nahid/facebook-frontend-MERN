@@ -23,16 +23,16 @@ export default function Login() {
                               <Form>
                                  <input type='text' />
                                  <input typpe='text' />
-                                 <button type='submit'>Log In</button>
+                                 <button type='submit' className='blue_btn'>Log In</button>
                               </Form>
                            )
                         }
                      </Formik>
-                     <Link to='/forget-password'>Forget password?</Link>
+                     <Link to='/forget-password' className='forget_password'>Forget password?</Link>
                      <div className='sign_splitter'></div>
                      <button className='blue_btn open_signup'>Create Account</button>
                   </div>
-                  <Link to='/'>
+                  <Link to='/' className='sign_extra'>
                      <b>Create a Page</b> for celebraty, brand or business
                   </Link>
                </div>
