@@ -34,6 +34,7 @@ a {
   --green-color: #42b72a;
   --light-blue-color: #e7f3ff;
   --border-color: #ccced2;
+  --error-border-color: #b94a48;
   --shadow-1: rgba(0, 0, 0, 0.2);
   --shadow-2: rgba(0, 0, 0, 0.1);
   --shadow-3: rgba(0, 0, 0, 0.3);

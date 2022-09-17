@@ -18,3 +18,62 @@
    margin-bottom: 10px;
    color: var(--color-primary);
 }
+
+.input_wrap input:focus {
+   border-color: var(--blue-color);
+}
+
+.input_error_border {
+   border-color: var(--error-border-color) !important;
+}
+
+.input_wrap i {
+   position: absolute;
+   right: 5px;
+   top: 15px;
+   margin-right: 5px;
+   transform: scale(0.8);
+}
+
+.input_error {
+   position: relative;
+   padding: 15px 10px;
+   background: var(--error-border-color);
+   width: 100%;
+   color: #fff;
+   font-size: 13px;
+   border-radius: 5px;
+   margin-bottom: 15px;
+}
+
+.error_arrow_top {
+   border-top: 10px solid var(--error-border-color);
+   border-right: 10px solid transparent;
+   border-left: 10px solid transparent;
+   position: absolute;
+   bottom: -10px;
+}
+
+.error_arrow_bottom {
+   border-bottom: 10px solid var(--error-border-color);
+   border-right: 10px solid transparent;
+   border-left: 10px solid transparent;
+   position: absolute;
+   top: -10px;
+}
+
+.input_error_desktop {
+   position: absolute;
+   width: 300px;
+   left: -19.5rem;
+   top: -4px;
+}
+
+.error_arrow_left {
+   border-left: 10px solid var(--error-border-color);
+   border-top: 10px solid transparent;
+   border-bottom: 10px solid transparent;
+   position: absolute;
+   right: -10px;
+   top: 15px;
+}

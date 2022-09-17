@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 import { Link } from 'react-router-dom'
 
@@ -13,6 +14,10 @@ const loginInfos = {
 export default function Login() {
    const [login, setLogin] = useState(loginInfos);
    const { email, password } = login;
+   const loginValidation = Yup.object({
+      email: Yup.string().required('Email is required').email('Email must be a valid email'),
+      password: Yup.string().required('Password is required'),
+   })
 
    const handleLoginChange = (e) => {
       const { name, value } = e.target;
@@ -31,12 +36,12 @@ export default function Login() {
                </div>
                <div className='login_2'>
                   <div className='login_2_wrap'>
-                     <Formik enableReinitialize initialValues={{ email, password }}>
+                     <Formik enableReinitialize initialValues={{ email, password }} validationSchema={loginValidation}>
                         {
                            (formik) => (
                               <Form>
                                  <LoginInput type='text' name='email' placeholder='Email address' onChange={handleLoginChange} />
-                                 <LoginInput type='password' name='password' placeholder='Password' onChange={handleLoginChange} />
+                                 <LoginInput type='password' name='password' placeholder='Password' onChange={handleLoginChange} bottom />
                                  <button type='submit' className='blue_btn'>Log In</button>
                               </Form>
                            )
