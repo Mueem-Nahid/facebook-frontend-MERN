@@ -71,7 +71,71 @@
    font-size: 15px;
 }
 
+/*----Footer------*/
+
+.login_footer {
+   height: 22vh;
+   background: var(--bg-primary);
+   padding: 1.5rem;
+}
+
+.login_footer_wrap {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 3px 10px;
+   font-size: 13px;
+   color: var(--color-secondary);
+   max-width: 350px;
+   margin: 0 auto;
+}
+
+.login_footer_wrap a {
+   display: flex;
+   align-items: center;
+}
+
+.login_footer_wrap a:hover {
+   text-decoration: underline;
+}
+
+.footer_square {
+   background: var(--bg-secondary);
+   height: 19px;
+   width: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid var(--bg-third);
+}
+
+.footer_square i {
+   transform: scale(0.8);
+   -webkit-filter: invert(40%);
+}
+
+.footer_splitter {
+   width: 100%;
+   height: 1px;
+   background: var(--bg-third);
+   margin: 10px auto;
+   max-width: 900px;
+}
+
+/*----Footer------*/
+
 /* ----- media queries ----- */
+
+@media (min-width: 539px) {
+   .login_footer_wrap {
+      max-width: 520px;
+   }
+}
+
+@media (min-width: 650px) {
+   .login_footer_wrap {
+      max-width: 650px;
+   }
+}
 
 @media (min-width: 850px) {
    .login_wrap {
@@ -103,6 +167,10 @@
 
    .input_wrap {
       width: 360px !important;
+   }
+
+   .login_footer_wrap {
+      max-width: 900px;
    }
 }
 
