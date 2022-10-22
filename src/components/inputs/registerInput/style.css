@@ -1,0 +1,31 @@
+.register_input_wrap {
+   width: 100% !important;
+}
+
+.register_input_wrap input {
+   /* width: 300px; */
+   background: var(--bg-secondary);
+}
+
+.register_input_wrap .input_error {
+   max-width: 300px;
+}
+
+.register_input_wrap .error_arrow_bottom {
+   transform: translateY(2px);
+}
+
+.error_arrow_right {
+   border-right: 10px solid var(--error-border-color);
+   border-top: 10px solid transparent;
+   border-bottom: 10px solid transparent;
+   position: absolute;
+   left: -10px;
+   top: 15px;
+}
+
+@media (min-width: 539px) {
+   .register_input_wrap .input_error {
+      max-width: 100%;
+   }
+}

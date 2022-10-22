@@ -64,7 +64,7 @@
 .open_signup {
    background: var(--green-color);
    width: 70% !important;
-   font-weight: 600 !important;
+   font-weight: 700 !important;
    font-size: 17px;
    margin-top: 1rem;
 }
@@ -256,6 +256,19 @@
    .login_footer_wrap {
       max-width: 520px;
    }
+
+   .register {
+      width: 400px;
+   }
+
+   .reg_line {
+      flex-direction: row;
+   }
+
+   .reg_grid select,
+   .reg_grid label {
+      width: 110px;
+   }
 }
 
 @media (min-width: 650px) {
@@ -293,7 +306,7 @@
    }
 
    .input_wrap {
-      width: 360px !important;
+      width: 360px;
    }
 
    .login_footer_wrap {
