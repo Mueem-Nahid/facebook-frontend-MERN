@@ -168,7 +168,7 @@
 }
 
 .reg_grid label {
-   width: 90ox;
+   width: 90px;
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -197,6 +197,21 @@
    justify-content: center;
    margin: 20px 0 10px 0;
 }
+
+/*------------- DoB and Gender error------------- */
+
+.reg_grid .input_error {
+   width: 300px;
+   position: absolute;
+   top: 70px;
+}
+
+.input_error_select_large {
+   left: -97%;
+   top: 15px !important;
+}
+
+/*---------- DoB and Gender error------------- */
 
 /*----Footer------*/
 
@@ -268,6 +283,10 @@
    .reg_grid select,
    .reg_grid label {
       width: 110px;
+   }
+
+   .reg_grid .input_error {
+      width: 350px;
    }
 }
 
