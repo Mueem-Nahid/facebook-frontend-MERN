@@ -1,9 +1,12 @@
+import axios from "axios";
+import * as Yup from 'yup';
 import {Form, Formik} from "formik";
-import * as Yup from 'yup'
 import React, {useState} from "react";
+import DotLoader from "react-spinners/DotLoader";
+
+import GenderSelect from "./GenderSelect";
 import RegisterInput from "../inputs/registerInput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
-import GenderSelect from "./GenderSelect";
 
 const userInfos = {
    first_name: '',
@@ -63,6 +66,32 @@ export default function RegisterForm() {
       } else {
          setDateError("");
          setGenderError("");
+         registerSubmit();
+      }
+   }
+
+   const [error, setError] = useState("");
+   const [success, setSuccess] = useState("");
+   const [loading, setLoading] = useState(false);
+
+   const registerSubmit = async () => {
+      try {
+         const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
+            first_name,
+            last_name,
+            email,
+            password,
+            bYear,
+            bMonth,
+            bDay,
+            gender
+         })
+         setError("");
+         setSuccess(data.message);
+      } catch (error) {
+         setLoading(false);
+         setSuccess("");
+         setError(error.response.data.message);
       }
    }
 
@@ -117,6 +146,10 @@ export default function RegisterForm() {
                         <div className="reg_btn_wrapper">
                            <button className="blue_btn open_signup">Sign up</button>
                         </div>
+                        <DotLoader color="#1076f2" loading={loading} size={30} aria-label="Loading Spinner"
+                                   data-testid="loader"/>
+                        {error && <div className="error_text">{error}</div>}
+                        {success && <div className="success_text">{success}</div>}
                      </Form>
                   )
                }

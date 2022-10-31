@@ -213,6 +213,16 @@
 
 /*---------- DoB and Gender error------------- */
 
+/* Messages style */
+
+.error_text {
+   color: var(--error-border-color);
+}
+
+.success_text {
+   color: var(--green-color);
+}
+
 /*----Footer------*/
 
 .login_footer {
