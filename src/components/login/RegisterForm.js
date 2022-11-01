@@ -1,7 +1,10 @@
 import axios from "axios";
 import * as Yup from 'yup';
+import Cookies from 'js-cookie';
 import {Form, Formik} from "formik";
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
 
 import GenderSelect from "./GenderSelect";
@@ -20,6 +23,8 @@ const userInfos = {
 }
 
 export default function RegisterForm() {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
    const [user, setUser] = useState(userInfos);
    const {first_name, last_name, email, password, bYear, bMonth, bDay, gender} = user
    const yearTemp = new Date().getFullYear()
@@ -88,6 +93,12 @@ export default function RegisterForm() {
          })
          setError("");
          setSuccess(data.message);
+         const {message, ...rest} = data; // extracting every info except message
+         setTimeout(() => {
+            dispatch({type: "LOGIN", payload: rest});
+            Cookies.set("user", JSON.stringify(rest));
+            navigate("/");
+         }, 3000);
       } catch (error) {
          setLoading(false);
          setSuccess("");
