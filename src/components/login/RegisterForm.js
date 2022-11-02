@@ -22,7 +22,7 @@ const userInfos = {
    gender: ''
 }
 
-export default function RegisterForm() {
+export default function RegisterForm({setVisible}) {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const [user, setUser] = useState(userInfos);
@@ -81,6 +81,7 @@ export default function RegisterForm() {
 
    const registerSubmit = async () => {
       try {
+         setLoading(true)
          const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
             first_name,
             last_name,
@@ -110,7 +111,7 @@ export default function RegisterForm() {
       <div className="blur">
          <div className='register'>
             <div className='register_header'>
-               <i className='exit_icon'></i>
+               <i className='exit_icon' onClick={() => setVisible(false)}></i>
                <span>Sign up</span>
                <span>It's quick and easy</span>
             </div>
