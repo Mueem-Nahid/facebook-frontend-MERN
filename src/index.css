@@ -79,3 +79,10 @@ a {
 .hover2:hover {
    background: var(--bg-third);
 }
+
+/* Card */
+.card {
+   height: 500px;
+   width: 500px;
+   background: #42b72a;
+}
