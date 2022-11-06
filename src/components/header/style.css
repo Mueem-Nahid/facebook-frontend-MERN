@@ -11,6 +11,8 @@ header {
    color: var(--color-primary);
 }
 
+/*-------header left---------*/
+
 .header_left {
    display: flex;
    align-items: center;
@@ -49,6 +51,8 @@ header {
 .search input::placeholder {
    transform: translateY(-1px);
 }
+
+/*-------header middle---------*/
 
 .header_middle {
    display: flex;
@@ -107,6 +111,8 @@ header {
    color: #fff;
 }
 
+/*-------header right---------*/
+
 .header_right {
    display: flex;
    position: absolute;
@@ -153,7 +159,7 @@ header {
    cursor: pointer;
 }
 
-.right_notification{
+.right_notification {
    position: absolute;
    top: -6px;
    right: -5px;
@@ -162,4 +168,75 @@ header {
    padding: 1px 6px;
    font-size: 13px;
    color: #fff;
+}
+
+/*----- search menu ------*/
+
+.search_area {
+   position: absolute;
+   align-items: flex-start;
+   flex-direction: column;
+   gap: 6px;
+   background: var(--bg-primary);
+   box-shadow: 0 12px 12px var(--shadow-1), inset 0 0 0 0 var(--shadow-inset);
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+   transition: all 0.2s;
+   -webkit-font-smoothing: antialiased;
+   z-index: 1;
+   min-height: 400px;
+   max-height: 70vh;
+   padding: 0 16px 10px 6px;
+   margin-top: 2px;
+}
+
+.search_wrap {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+}
+
+.search_area .search {
+   padding: 10px 44px 10px 12px;
+   width: 252px;
+   gap: 4px;
+}
+
+.search_area .search input {
+   padding-left: 4px;
+}
+
+.search_area .search svg {
+   transform: translateY(1px);
+}
+
+.search_area .search input::placeholder {
+   transform: translateY(-2px);
+}
+
+.search_area .search input:focus::placeholder {
+   transform: translateY(-1px);
+}
+
+.search_history_header {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px;
+   font-size: 14px;
+}
+
+.search_history_header span {
+   font-weight: 600;
+   font-size: 16px;
+}
+
+.search_history_header a {
+   cursor: pointer;
+   color: var(--blue-color);
+}
+
+.search_history {
+   width: 100%;
 }
