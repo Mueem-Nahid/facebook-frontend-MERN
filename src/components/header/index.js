@@ -18,6 +18,7 @@ import {
 import "./style.css";
 import SearchMenu from "./SearchMenu";
 import {searchbarColor} from "../../utils/variables";
+import AllMenu from "./AllMenu";
 
 const Header = () => {
    const {user} = useSelector((user) => ({...user}));
@@ -64,6 +65,7 @@ const Header = () => {
             </Link>
             <div className="circle_icon hover1">
                <Menu/>
+               <AllMenu/>
             </div>
             <div className="circle_icon hover1">
                <Messenger/>

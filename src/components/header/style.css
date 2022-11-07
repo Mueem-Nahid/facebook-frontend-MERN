@@ -240,3 +240,144 @@ header {
 .search_history {
    width: 100%;
 }
+
+/* --------- search all menu --------- */
+
+.all_menu {
+   position: absolute;
+   right: -9rem;
+   top: 45px;
+   background: var(--bg-secondary);
+   border-radius: 10px;
+   height: 90vh;
+   width: 575px;
+   padding: 10px 1rem;
+   box-shadow: -2px 1px 5px 2px var(--shadow-1);
+   user-select: none;
+}
+
+.all_menu_header {
+   font-size: 24px;
+   line-height: 28px;
+   font-weight: 700;
+   margin-bottom: 10px;
+}
+
+.all_menu_wrap {
+   display: grid;
+   grid-template-columns: 1.7fr 1fr;
+   gap: 1rem;
+   overflow-y: auto;
+   height: 95%;
+}
+
+.all_left {
+   background: var(--bg-primary);
+   border-radius: 10px;
+   padding: 15px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.all_menu_search {
+   background: var(--bg-secondary);
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   padding: 10px;
+   border-radius: 50px;
+}
+
+.all_menu_search input {
+   border: none;
+   outline: none;
+   background: transparent;
+   width: 100%;
+   font-size: 15px;
+}
+
+.all_menu_group {
+   margin-top: 10px;
+   border-bottom: 1px solid var(--divider);
+}
+
+.all_menu_group_header {
+   font-weight: 600;
+   font-size: 16px;
+   padding: 10px 0;
+}
+
+.all_menu_group {
+   width: 100%;
+}
+
+.all_menu_item {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   margin-bottom: 5px;
+   padding: 5px;
+   cursor: pointer;
+   border-radius: 10px;
+}
+
+.all_menu_item img {
+   width: 36px;
+   height: 36px;
+   margin-right: 10px;
+}
+
+.all_menu_col {
+   display: flex;
+   flex-direction: column;
+}
+
+.all_menu_col span:first-of-type {
+   font-size: 14px;
+   font-weight: 500;
+}
+
+.all_menu_col span:last-of-type {
+   font-size: 12px;
+   color: #65676b;
+   width: 95%;
+}
+
+.all_right {
+   padding: 15px 10px;
+   background: var(--bg-primary);
+   margin-right: 1rem;
+   border-radius: 10px;
+   height: 550px;
+   width: 170px;
+   position: fixed;
+   right: 2rem;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.all_right_header {
+   font-size: 20px;
+   font-weight: 700;
+   margin-bottom: 15px;
+}
+
+.all_right_item {
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+   gap: 10px;
+   font-size: 14px;
+   cursor: pointer;
+   padding: 5px 10px;
+   border-radius: 10px;
+   margin-bottom: 2px;
+}
+
+.all_right_circle {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: var(--bg-third);
+}
