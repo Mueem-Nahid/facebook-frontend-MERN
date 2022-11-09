@@ -37,6 +37,7 @@ a {
    --error-border-color: #b94a48;
    --notification-background-color: #e41e3f;
    --profile-picture-border-color: #b0b3b8;
+   --scrollbar-color: #aeaeafa1;
    --shadow-1: rgba(0, 0, 0, 0.2);
    --shadow-2: rgba(0, 0, 0, 0.1);
    --shadow-3: rgba(0, 0, 0, 0.3);
@@ -85,4 +86,14 @@ a {
    height: 500px;
    width: 500px;
    background: #42b72a;
+}
+
+/* Scrollbar */
+.scrollbar::-webkit-scrollbar {
+   width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+   background: var(--scrollbar-color);
+   border-radius: 5px;
 }
