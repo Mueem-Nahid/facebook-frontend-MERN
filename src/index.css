@@ -22,6 +22,7 @@ a {
    --bg-secondary: #f0f2f5;
    --bg-third: #e4e6eb;
    --bg-forth: #f0f2f5;
+   --bg-fifth: #d4d6da3a;
    --color-primary: #050505;
    --color-secondary: #65676b;
    --divider: #ced0d4;
@@ -81,6 +82,10 @@ a {
    background: var(--bg-third);
 }
 
+.hover3:hover {
+   background: var(--bg-fifth);
+}
+
 /* Card */
 .card {
    height: 500px;
@@ -96,4 +101,18 @@ a {
 .scrollbar::-webkit-scrollbar-thumb {
    background: var(--scrollbar-color);
    border-radius: 5px;
+}
+
+/* circles */
+.small_circle {
+   position: relative;
+   height: 36px;
+   width: 36px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-right: 11px;
+   background: var(--bg-third);
+   cursor: pointer;
 }

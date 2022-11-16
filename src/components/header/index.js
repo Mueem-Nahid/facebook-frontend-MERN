@@ -16,9 +16,10 @@ import {
    Watch
 } from "../../svg";
 import "./style.css";
+import AllMenu from "./AllMenu";
+import Index from "./userMenu";
 import SearchMenu from "./SearchMenu";
 import {searchbarColor} from "../../utils/variables";
-import AllMenu from "./AllMenu";
 import useClickOutside from "../../hooks/useClickOutside";
 
 const Header = () => {
@@ -83,6 +84,7 @@ const Header = () => {
             </div>
             <div className="circle_icon hover1">
                <ArrowDown/>
+               <Index user={user} />
             </div>
          </div>
       </header>
