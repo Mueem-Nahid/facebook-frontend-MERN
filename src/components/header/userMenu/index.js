@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import SettingsPrivacy from "./SettingsPrivacy";
+import HelpSupport from "./HelpSupport";
 
 const UserMenu = ({user}) => {
    const [visible, setVisible] = useState(0);
@@ -9,7 +10,8 @@ const UserMenu = ({user}) => {
    return (
       <div className="menu">
          {
-            visible === 0 && <div>
+            visible === 0 &&
+            <div>
                <Link to="/profile" className="menu_header hover3">
                   <img src={user?.picture} alt="user"/>
                   <div className="menu_col">
@@ -30,7 +32,7 @@ const UserMenu = ({user}) => {
                   </div>
                </div>
                <div className="menu_splitter"></div>
-               <div className="menu_item hover3">
+               <div className="menu_item hover3" onClick={()=>setVisible(1)}>
                   <div className="small_circle">
                      <i className="settings_filled_icon"></i>
                   </div>
@@ -39,7 +41,7 @@ const UserMenu = ({user}) => {
                      <i className="right_icon"></i>
                   </div>
                </div>
-               <div className="menu_item hover3">
+               <div className="menu_item hover3" onClick={()=>setVisible(2)}>
                   <div className="small_circle">
                      <i className="help_filled_icon"></i>
                   </div>
@@ -66,7 +68,10 @@ const UserMenu = ({user}) => {
             </div>
          }
          {
-            visible === 1 && <SettingsPrivacy/>
+            visible === 1 && <SettingsPrivacy setVisible={setVisible}/>
+         }
+         {
+            visible === 2 && <HelpSupport setVisible={setVisible}/>
          }
       </div>
    );
