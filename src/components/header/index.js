@@ -26,10 +26,16 @@ const Header = () => {
    const {user} = useSelector((user) => ({...user}));
    const [showSearchMenu, setShowSearchMenu] = useState(false);
    const [showAllMenu, setShowAllMenu] = useState(false);
+   const [showUserMenu, setShowUserMenu] = useState(false);
    const allMenu = useRef(null);
+   const userMenu = useRef(null);
 
    useClickOutside(allMenu, () => {
       setShowAllMenu(false);
+   })
+
+   useClickOutside(userMenu, () => {
+      setShowUserMenu(false);
    })
 
    return (
@@ -71,8 +77,10 @@ const Header = () => {
                <img src={user?.picture} alt=""/>
                <span>{user?.first_name}</span>
             </Link>
-            <div className="circle_icon hover1" ref={allMenu} onClick={() => setShowAllMenu((prev) => !prev)}>
-               <Menu/>
+            <div className="circle_icon hover1" ref={allMenu} >
+               <div onClick={() => setShowAllMenu((prev) => !prev)}>
+                  <Menu/>
+               </div>
                {showAllMenu && <AllMenu/>}
             </div>
             <div className="circle_icon hover1">
@@ -82,9 +90,13 @@ const Header = () => {
                <Notifications/>
                <div className="right_notification">3</div>
             </div>
-            <div className="circle_icon hover1">
-               <ArrowDown/>
-               <Index user={user} />
+            <div className="circle_icon hover1" ref={userMenu}>
+               <div onClick={() => setShowUserMenu((prev) => !prev)}>
+                  <ArrowDown/>
+               </div>
+               {
+                  showUserMenu && <Index user={user}/>
+               }
             </div>
          </div>
       </header>
