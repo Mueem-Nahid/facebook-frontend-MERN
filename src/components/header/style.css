@@ -513,3 +513,140 @@ header {
    width: 20px;
    height: 20px;
 }
+
+/* ------ Active header ------- */
+
+.active_header {
+   background: var(--light-blue-color);
+}
+
+.active_header svg {
+   fill: var(--blue-color);
+}
+
+/* --------- responsiveness --------- */
+
+@media (max-width: 1295px) {
+   .middle_icon {
+      width: 90px;
+   }
+}
+
+@media (max-width: 1130px) {
+   .middle_icon {
+      width: 70px;
+   }
+}
+
+@media (max-width: 1040px) {
+   .search {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      justify-content: center;
+   }
+
+   .search input {
+      display: none;
+   }
+
+   .header_middle {
+      transform: translateX(-15%);
+   }
+}
+
+@media (max-width: 945px) {
+   .header_middle {
+      transform: translateX(-22%);
+   }
+}
+
+@media (max-width: 850px) {
+   .header_middle {
+      transform: translateX(-30%);
+   }
+
+   .middle_icon:nth-child(5) {
+      display: none;
+   }
+}
+
+@media (max-width: 770px) {
+   .header_middle {
+      transform: translateX(-37%);
+   }
+
+   .middle_icon:nth-child(4) {
+      display: none;
+   }
+}
+
+@media (max-width: 720px) {
+   .header_middle {
+      transform: translateX(-25%);
+   }
+
+   .middle_icon:nth-child(3) {
+      display: none;
+   }
+}
+
+@media (max-width: 625px) {
+   .profile_link {
+      display: none;
+   }
+
+   .all_menu {
+      width: 485px;
+   }
+
+   .all_left {
+      width: 250px;
+   }
+}
+
+@media (max-width: 510px) {
+   .all_menu {
+      width: 340px;
+      right: -8.5rem;
+   }
+
+   .all_menu_wrap {
+      grid-template-columns: 1fr;
+   }
+
+   .all_left {
+      width: 100%;
+   }
+
+   .all_right {
+      position: relative;
+      width: 100%;
+      padding-left: 3rem;
+      margin-bottom: 1rem;
+   }
+}
+
+@media (max-width: 490px) {
+   .middle_icon:nth-child(1) {
+      display: none;
+   }
+}
+
+@media (max-width: 401px) {
+   .all_menu {
+      left: -12.5rem;
+   }
+}
+
+@media (max-width: 400px) {
+   .header_right .circle_icon:nth-child(3) {
+      display: none;
+   }
+
+   .menu {
+      width: 340px;
+   }
+}
+
+/* --------- end of responsiveness --------- */

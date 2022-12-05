@@ -16,8 +16,8 @@ import {
    Watch
 } from "../../svg";
 import "./style.css";
-import AllMenu from "./AllMenu";
 import Index from "./userMenu";
+import AllMenu from "./AllMenu";
 import SearchMenu from "./SearchMenu";
 import {searchbarColor} from "../../utils/variables";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -77,7 +77,7 @@ const Header = () => {
                <img src={user?.picture} alt=""/>
                <span>{user?.first_name}</span>
             </Link>
-            <div className="circle_icon hover1" ref={allMenu} >
+            <div className={`circle_icon hover1 ${showAllMenu && 'active_header'}`} ref={allMenu}>
                <div onClick={() => setShowAllMenu((prev) => !prev)}>
                   <Menu/>
                </div>
@@ -90,7 +90,7 @@ const Header = () => {
                <Notifications/>
                <div className="right_notification">3</div>
             </div>
-            <div className="circle_icon hover1" ref={userMenu}>
+            <div className={`circle_icon hover1 ${showUserMenu && 'active_header'}`} ref={userMenu}>
                <div onClick={() => setShowUserMenu((prev) => !prev)}>
                   <ArrowDown/>
                </div>
