@@ -514,6 +514,10 @@ header {
    height: 20px;
 }
 
+.menu_icon {
+   transform: translateY(2px);
+}
+
 /* ------ Active header ------- */
 
 .active_header {
