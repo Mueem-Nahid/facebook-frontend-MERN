@@ -40,7 +40,7 @@
    padding: 15px 10px;
    background: var(--error-border-color);
    width: 100%;
-   color: #fff;
+   color: var(--bg-primary);
    font-size: 13px;
    border-radius: 5px;
    margin-bottom: 15px;

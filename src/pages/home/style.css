@@ -1,0 +1,11 @@
+.home {
+   min-height: 100vh;
+   background: var(--bg-secondary);
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+
+.home_middle {
+   margin-top: 76px;
+   margin-left: 31.8vw;
+}

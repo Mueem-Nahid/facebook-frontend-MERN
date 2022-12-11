@@ -108,7 +108,7 @@ header {
    border-radius: 50px;
    padding: 1px 5px;
    font-size: 13px;
-   color: #fff;
+   color: var(--bg-primary);
 }
 
 /*-------header right---------*/
@@ -167,7 +167,7 @@ header {
    border-radius: 50px;
    padding: 1px 6px;
    font-size: 13px;
-   color: #fff;
+   color: var(--bg-primary);
 }
 
 /*----- search menu ------*/
