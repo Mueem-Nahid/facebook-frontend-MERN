@@ -43,6 +43,7 @@
 
 .create_story_text {
    position: absolute;
+   font-weight: 600;
    color: #000;
    left: 20%;
    top: 87%;
