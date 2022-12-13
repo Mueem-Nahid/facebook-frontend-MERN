@@ -3,7 +3,7 @@
    margin-top: 50px;
    left: 6px;
    max-height: 100vh;
-   width: 300px;
+   width: 15vw;
    overflow-y: auto;
    color: var(--color-primary);
    padding: 15px 0 5rem;
@@ -14,7 +14,7 @@
    display: flex;
    align-items: center;
    padding: 5px 10px;
-   border-radius: 10px;
+   /*border-radius: 10px;*/
    cursor: pointer;
    font-weight: 600;
    font-size: 14px;
@@ -125,10 +125,22 @@
    left: 10px;
    font-size: 12px;
    color: var(--color-secondary);
+   width: 15vw;
 }
 
 .relative_fb_copyright {
    position: relative;
    margin-top: 2rem;
    width: 90%;
+}
+
+@media (max-width: 1030px) {
+   .left_link {
+      background: var(--bg-third);
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+   }
 }

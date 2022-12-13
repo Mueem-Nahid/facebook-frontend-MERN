@@ -3,8 +3,12 @@ import Story from "./story";
 import {stories} from "../../../data/home";
 import {ArrowRight, Plus} from "../../../svg";
 import {searchbarColor} from "../../../utils/variables";
+import useMediaQueryVariables from "../../../hooks/useMediaQueryVariables";
 
 const Stories = () => {
+   const {view4, view5} = useMediaQueryVariables();
+   const max = view5 ? 5 : view4 ? 4 : stories.length;
+
    return (
       <div className="stories">
          <div className="create_story_card">
@@ -15,7 +19,7 @@ const Stories = () => {
             <div className="create_story_text">Create story</div>
          </div>
          {
-            stories.map((story, i) => (
+            stories.slice(0, max).map((story, i) => (
                <Story key={i} story={story}/>
             ))
          }

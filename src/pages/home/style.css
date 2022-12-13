@@ -6,6 +6,50 @@
 }
 
 .home_middle {
-   margin-top: 76px;
-   margin-left: 31.8vw;
+   margin-top: 75px;
+   /* keep this section in the middle of the screen always */
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
 }
+
+@media (max-width: 1175px) {
+   .home_middle .stories,
+   .home_middle .create_post {
+      width: 84%;
+   }
+
+   .home_middle {
+      margin-left: 5%;
+   }
+
+   .right_home {
+      width: 18vw;
+   }
+}
+
+@media (max-width: 1030px) {
+   .left_home .left_link span,
+   .left_home .left_link .col,
+   .shortcut .heading,
+   .shortcut_item span,
+   .splitter,
+   .fb_copyright {
+      display: none;
+   }
+
+   .left_home {
+      width: 70px;
+   }
+
+   .home_middle {
+      position: relative;
+      margin-left: 55px;
+   }
+
+   .home_middle .stories,
+   .home_middle .create_post {
+      width: 100%;
+   }
+}
+
