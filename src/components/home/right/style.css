@@ -93,3 +93,27 @@
       width: 20px;
    }
 }
+
+@media (max-width: 960px) {
+   .right_home {
+      left: 77%;
+   }
+
+   .splitter1 {
+      width: 20vw;
+   }
+
+   .contact_circle {
+      width: 30px;
+   }
+
+   .contacts_header_right {
+      right: 0;
+   }
+}
+
+@media (max-width: 905px) {
+   .right_home {
+      display: none;
+   }
+}

@@ -143,4 +143,8 @@
       display: grid;
       place-items: center;
    }
+
+   .left_home::-webkit-scrollbar {
+      display: none;
+   }
 }

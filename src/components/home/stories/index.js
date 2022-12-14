@@ -6,8 +6,8 @@ import {searchbarColor} from "../../../utils/variables";
 import useMediaQueryVariables from "../../../hooks/useMediaQueryVariables";
 
 const Stories = () => {
-   const {view4, view5} = useMediaQueryVariables();
-   const max = view5 ? 5 : view4 ? 4 : stories.length;
+   const {view4, view5, view6, view7} = useMediaQueryVariables();
+   const max = view7 ? 5 : view6 ? 4 : view5 ? 5 : view4 ? 4 : stories.length;
 
    return (
       <div className="stories">
