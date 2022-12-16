@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 import Cookies from "js-cookie";
 import DotLoader from "react-spinners/DotLoader";
+import {loaderColor} from "../../utils/variables";
 
 const loginInfos = {
    email: '',
@@ -69,7 +70,7 @@ export default function LoginForm({setVisible}) {
                      )
                   }
                </Formik>
-               <DotLoader color="#1076f2" loading={loading} size={30} aria-label="Loading Spinner"
+               <DotLoader color={loaderColor} loading={loading} size={30} aria-label="Loading Spinner"
                           data-testid="loader"/>
                {error && <div className="error_text">{error}</div>}
                <Link to='/forget-password' className='forget_password'>Forget password?</Link>

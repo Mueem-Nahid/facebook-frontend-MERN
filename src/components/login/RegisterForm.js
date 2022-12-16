@@ -10,6 +10,7 @@ import DotLoader from "react-spinners/DotLoader";
 import GenderSelect from "./GenderSelect";
 import RegisterInput from "../inputs/registerInput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
+import {loaderColor} from "../../utils/variables";
 
 const userInfos = {
    first_name: '',
@@ -158,7 +159,7 @@ export default function RegisterForm({setVisible}) {
                         <div className="reg_btn_wrapper">
                            <button className="blue_btn open_signup">Sign up</button>
                         </div>
-                        <DotLoader color="#1076f2" loading={loading} size={30} aria-label="Loading Spinner"
+                        <DotLoader color={loaderColor} loading={loading} size={30} aria-label="Loading Spinner"
                                    data-testid="loader"/>
                         {error && <div className="error_text">{error}</div>}
                         {success && <div className="success_text">{success}</div>}
