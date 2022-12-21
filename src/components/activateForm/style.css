@@ -2,7 +2,7 @@
 .popup {
    background: var(--bg-primary);
    box-shadow: 0 1px 2px var(--shadow-1);
-   width: 30vw;
+   width: 40vw;
    height: 200px;
    position: fixed;
    top: 40%;
@@ -10,6 +10,7 @@
    transform: translate(-50%, -50%);
    z-index: 99;
    text-align: center;
+   border-radius: 10px;
 }
 
 .popup_header {
@@ -24,4 +25,10 @@
 .popup_message {
    padding: 15px;
    font-weight: 500;
+}
+
+@media (max-width: 805px) {
+   .popup {
+      width: 70vw;
+   }
 }
