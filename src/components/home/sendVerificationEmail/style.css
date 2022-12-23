@@ -18,3 +18,33 @@
    cursor: pointer;
 }
 
+@media (max-width: 1175px) {
+   .send_verification {
+      width: 84%;
+   }
+}
+
+@media (max-width: 1030px) {
+   .send_verification {
+      width: 100%;
+   }
+}
+
+@media (max-width: 965px) {
+   .send_verification {
+      width: 93%;
+   }
+}
+
+@media (max-width: 905px) {
+   .send_verification {
+      width: 112%;
+   }
+}
+
+@media (max-width: 630px) {
+   .send_verification {
+      width: 100%;
+   }
+}
+

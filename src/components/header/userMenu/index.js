@@ -1,12 +1,22 @@
-import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {useState} from 'react';
+import Cookies from "js-cookie";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+
 import SettingsPrivacy from "./SettingsPrivacy";
 import HelpSupport from "./HelpSupport";
 import DisplayAccessibility from "./DisplayAccessibility";
 
 const UserMenu = ({user}) => {
    const [visible, setVisible] = useState(0);
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
+   const handleLogout = () => {
+      dispatch({type: 'LOGOUT'});
+      Cookies.set("user", "");
+      navigate("/login");
+   }
 
    return (
       <div className="menu">
@@ -33,7 +43,7 @@ const UserMenu = ({user}) => {
                   </div>
                </div>
                <div className="menu_splitter"></div>
-               <div className="menu_item hover3" onClick={()=>setVisible(1)}>
+               <div className="menu_item hover3" onClick={() => setVisible(1)}>
                   <div className="small_circle">
                      <i className="settings_filled_icon"></i>
                   </div>
@@ -42,7 +52,7 @@ const UserMenu = ({user}) => {
                      <i className="right_icon"></i>
                   </div>
                </div>
-               <div className="menu_item hover3" onClick={()=>setVisible(2)}>
+               <div className="menu_item hover3" onClick={() => setVisible(2)}>
                   <div className="small_circle">
                      <i className="help_filled_icon"></i>
                   </div>
@@ -51,7 +61,7 @@ const UserMenu = ({user}) => {
                      <i className="right_icon"></i>
                   </div>
                </div>
-               <div className="menu_item hover3" onClick={()=>setVisible(3)}>
+               <div className="menu_item hover3" onClick={() => setVisible(3)}>
                   <div className="small_circle">
                      <i className="dark_filled_icon"></i>
                   </div>
@@ -60,7 +70,7 @@ const UserMenu = ({user}) => {
                      <i className="right_icon"></i>
                   </div>
                </div>
-               <div className="menu_item hover3">
+               <div className="menu_item hover3" onClick={handleLogout}>
                   <div className="small_circle">
                      <i className="logout_filled_icon"></i>
                   </div>

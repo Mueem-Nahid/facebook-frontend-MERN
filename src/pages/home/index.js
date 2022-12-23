@@ -17,7 +17,10 @@ export default function Home() {
          <LeftHome user={user}/>
          <div className="home_middle">
             <Stories/>
-            <SendVerificationEmail/>
+            {/* TODO: Need to test email verification */}
+            {
+               !user.verified && <SendVerificationEmail user={user}/>
+            }
             <CreatePost user={user}/>
          </div>
          <RightHome user={user}/>
