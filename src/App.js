@@ -2,9 +2,10 @@ import {Routes, Route} from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
+import Activate from "./pages/home/activate";
+import ResetPassword from "./pages/resetPassword";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
-import Activate from "./pages/home/activate";
 
 function App() {
    return (
@@ -17,6 +18,7 @@ function App() {
          <Route element={<NotLoggedInRoutes/>}>
             <Route path="/login" element={<Login/>} exact/>
          </Route>
+         <Route path="reset-password" element={<ResetPassword/>}/>
       </Routes>
    );
 }

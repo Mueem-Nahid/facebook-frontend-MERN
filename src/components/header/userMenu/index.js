@@ -1,22 +1,14 @@
 import {useState} from 'react';
-import Cookies from "js-cookie";
-import {Link, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 
-import SettingsPrivacy from "./SettingsPrivacy";
 import HelpSupport from "./HelpSupport";
+import SettingsPrivacy from "./SettingsPrivacy";
+import useLogout from "../../../hooks/useLogout";
 import DisplayAccessibility from "./DisplayAccessibility";
 
 const UserMenu = ({user}) => {
    const [visible, setVisible] = useState(0);
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
-
-   const handleLogout = () => {
-      dispatch({type: 'LOGOUT'});
-      Cookies.set("user", "");
-      navigate("/login");
-   }
+   const logout = useLogout();
 
    return (
       <div className="menu">
@@ -70,7 +62,7 @@ const UserMenu = ({user}) => {
                      <i className="right_icon"></i>
                   </div>
                </div>
-               <div className="menu_item hover3" onClick={handleLogout}>
+               <div className="menu_item hover3" onClick={logout}>
                   <div className="small_circle">
                      <i className="logout_filled_icon"></i>
                   </div>

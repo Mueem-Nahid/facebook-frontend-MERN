@@ -1,0 +1,31 @@
+.reset {
+   background: var(--bg-secondary);
+   height: 100vh;
+   color: var(--color-primary);
+}
+
+.reset_header {
+   background: var(--bg-primary);
+   box-shadow: 1px 8px 15px -7px var(--shadow-1);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 1rem;
+   margin-bottom: 50px;
+}
+
+.reset_header img {
+   width: 160px;
+}
+
+.right_reset {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.right_reset img {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+}

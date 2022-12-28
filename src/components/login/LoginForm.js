@@ -73,7 +73,7 @@ export default function LoginForm({setVisible}) {
                <DotLoader color={loaderColor} loading={loading} size={30} aria-label="Loading Spinner"
                           data-testid="loader"/>
                {error && <div className="error_text">{error}</div>}
-               <Link to='/forget-password' className='forget_password'>Forget password?</Link>
+               <Link to='/reset-password' className='forget_password'>Forget password?</Link>
                <div className='sign_splitter'></div>
                <button className='blue_btn open_signup' onClick={() => setVisible(true)}>Create Account</button>
             </div>
