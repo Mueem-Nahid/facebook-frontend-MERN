@@ -29,3 +29,53 @@
    height: 40px;
    border-radius: 50%;
 }
+
+.reset_wrap {
+   height: 67vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.reset_form {
+   position: relative;
+   background: var(--bg-primary);
+   box-shadow: 0 1px 2px var(--shadow-1);
+   border-radius: 10px;
+   width: 450px;
+   height: 280px;
+}
+
+.reset_form_header {
+   padding: 15px;
+   font-weight: 600;
+   font-size: 24px;
+   border-bottom: 1px solid var(--bg-third);
+}
+
+.reset_form_text {
+   padding: 15px;
+   font-size: 17px;
+}
+
+.reset_form form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-bottom: 1px solid var(--bg-third);
+}
+
+.reset_form_btns {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-top: 5px;
+   padding: 10px;
+   position: absolute;
+   right: 10px;
+   bottom: 10px;
+}
+
+.reset_form_btns a, button {
+   width: 90px;
+}
