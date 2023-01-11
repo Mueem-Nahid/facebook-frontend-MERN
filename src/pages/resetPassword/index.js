@@ -38,7 +38,7 @@ const ResetPassword = () => {
                visible === 0 && <SearchAccount email={email} setEmail={setEmail} error={error}/>
             }
             {
-               visible === 1 && <SendEmail/>
+               visible === 1 && <SendEmail user={user}/>
             }
          </div>
       </div>
