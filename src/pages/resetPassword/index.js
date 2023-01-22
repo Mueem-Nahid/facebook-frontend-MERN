@@ -7,6 +7,7 @@ import useLogout from "../../hooks/useLogout";
 import LoginFooter from "../../components/login/LoginFooter";
 import SendEmail from "../../components/resetPassword/SendEmail";
 import SearchAccount from "../../components/resetPassword/SearchAccount";
+import ChangePassword from "../../components/resetPassword/ChangePassword";
 import CodeVerification from "../../components/resetPassword/CodeVerification";
 
 
@@ -16,7 +17,9 @@ const ResetPassword = () => {
    const [email, setEmail] = useState("");
    const [code, setCode] = useState("");
    const [error, setError] = useState("");
-   const [visible, setVisible] = useState(2);
+   const [visible, setVisible] = useState(0);
+   const [password, setPassword] = useState("");
+   const [confirmPassword, setConfirmPassword] = useState("");
 
    return (
       <div className="reset">
@@ -46,6 +49,11 @@ const ResetPassword = () => {
             }
             {
                visible === 2 && <CodeVerification code={code} setCode={setCode} error={error}/>
+            }
+            {
+               visible === 3 &&
+               <ChangePassword password={password} confirmPassword={confirmPassword} setPassword={setPassword}
+                               setConfirmPassword={setConfirmPassword} error={error}/>
             }
          </div>
          <LoginFooter/>

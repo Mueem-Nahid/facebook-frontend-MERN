@@ -21,6 +21,7 @@ const SendEmail = ({user}) => {
                <span>Facebook user</span>
             </div>
          </div>
+         <div className="border"></div>
          <div className="reset_form_btns">
             <Link to="/login" className="gray_btn">Not You?</Link>
             <button type="submit" className="blue_btn">Continue</button>
