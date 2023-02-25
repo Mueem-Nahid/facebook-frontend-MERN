@@ -17,9 +17,11 @@ const ResetPassword = () => {
    const [email, setEmail] = useState("");
    const [code, setCode] = useState("");
    const [error, setError] = useState("");
-   const [visible, setVisible] = useState(3);
+   const [visible, setVisible] = useState(0);
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
+   const [loading, setLoading] = useState(false);
+   const [userInfo, setUserInfo] = useState("");
 
    return (
       <div className="reset">
@@ -42,10 +44,11 @@ const ResetPassword = () => {
          </div>
          <div className="reset_wrap">
             {
-               visible === 0 && <SearchAccount email={email} setEmail={setEmail} error={error}/>
+               visible === 0 && <SearchAccount email={email} setEmail={setEmail} error={error} setLoading={setLoading}
+                                               setError={setError} setUserInfo={setUserInfo} setVisible={setVisible}/>
             }
             {
-               visible === 1 && <SendEmail user={user}/>
+               visible === 1 && userInfo && <SendEmail userInfo={userInfo}/>
             }
             {
                visible === 2 && <CodeVerification code={code} setCode={setCode} error={error}/>
