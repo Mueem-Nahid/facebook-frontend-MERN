@@ -22,8 +22,11 @@ function useMediaQueryVariables(props) {
    const view7 = useMediaQuery({
       query: '(max-width: 905px)'
    })
+   const view8 = useMediaQuery({
+      query: '(max-width: 1050px)'
+   })
 
-   return {view7, view6, view5, view4, view3, view2, view1}
+   return {view8, view7, view6, view5, view4, view3, view2, view1}
 }
 
 export default useMediaQueryVariables;

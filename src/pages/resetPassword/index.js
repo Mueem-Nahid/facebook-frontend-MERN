@@ -17,7 +17,7 @@ const ResetPassword = () => {
    const [email, setEmail] = useState("");
    const [code, setCode] = useState("");
    const [error, setError] = useState("");
-   const [visible, setVisible] = useState(0);
+   const [visible, setVisible] = useState(3);
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
 
