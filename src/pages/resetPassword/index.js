@@ -48,7 +48,10 @@ const ResetPassword = () => {
                                                setError={setError} setUserInfo={setUserInfo} setVisible={setVisible}/>
             }
             {
-               visible === 1 && userInfo && <SendEmail userInfo={userInfo}/>
+               visible === 1 && userInfo &&
+               <SendEmail email={email} error={error} setLoading={setLoading} loading={loading}
+                          setError={setError} setUserInfo={setUserInfo}
+                          setVisible={setVisible} userInfo={userInfo}/>
             }
             {
                visible === 2 && <CodeVerification code={code} setCode={setCode} error={error}/>
