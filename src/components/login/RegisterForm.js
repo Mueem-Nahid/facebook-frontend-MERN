@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
 import {Form, Formik} from "formik";
@@ -8,9 +7,10 @@ import {useNavigate} from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
 
 import GenderSelect from "./GenderSelect";
+import {loaderColor} from "../../utils/variables";
 import RegisterInput from "../inputs/registerInput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
-import {loaderColor} from "../../utils/variables";
+import {registerUser} from "../../apiServices/userAuth";
 
 const userInfos = {
    first_name: '',
@@ -83,16 +83,7 @@ export default function RegisterForm({setVisible}) {
    const registerSubmit = async () => {
       try {
          setLoading(true)
-         const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
-            first_name,
-            last_name,
-            email,
-            password,
-            bYear,
-            bMonth,
-            bDay,
-            gender
-         })
+         const data = await registerUser({first_name, last_name, email, password, bYear, bMonth, bDay, gender});
          setError("");
          setSuccess(data.message);
          const {message, ...rest} = data; // extracting every info except message
