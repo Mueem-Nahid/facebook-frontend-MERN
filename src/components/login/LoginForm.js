@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
-import * as Yup from 'yup'
-import {Form, Formik} from 'formik'
-import LoginInput from '../../components/inputs/loginInput'
-import {useDispatch} from "react-redux";
-import axios from "axios";
+import * as Yup from 'yup';
+import {useState} from 'react';
 import Cookies from "js-cookie";
+import {Form, Formik} from 'formik';
+import {useDispatch} from "react-redux";
 import DotLoader from "react-spinners/DotLoader";
+import {Link, useNavigate} from 'react-router-dom';
+
 import {loaderColor} from "../../utils/variables";
+import {loginUser} from "../../apiServices/userAuth";
+import LoginInput from '../../components/inputs/loginInput';
 
 const loginInfos = {
    email: '',
@@ -36,7 +37,7 @@ export default function LoginForm({setVisible}) {
    const handleLoginSubmit = async () => {
       try {
          setLoading(true)
-         const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {email, password});
+         const data = await loginUser({email, password});
          dispatch({type: "LOGIN", payload: data});
          Cookies.set("user", JSON.stringify(data));
          navigate("/");
