@@ -13,6 +13,7 @@ import {activateAccount} from "../../apiServices/userAuth";
 import ActivateForm from "../../components/activateForm/ActivateForm";
 
 export default function Activate() {
+   let count = 0
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const {user} = useSelector((state) => ({...state}));
@@ -44,7 +45,8 @@ export default function Activate() {
    };
 
    useEffect(() => {
-      handleActivateAccount();
+      count++;
+      count === 1 && handleActivateAccount();
    }, []);
 
    return (<div className="home">
