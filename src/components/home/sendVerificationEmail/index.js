@@ -10,7 +10,6 @@ const SendVerificationEmail = ({user}) => {
    const handleSendVerificationEmail = async () => {
       try {
          const data = await sendVerificationEmail(user?.token);
-         console.log("sent:",data);
          setSuccess(data.message);
       } catch (error) {
          setError(error.response.data.message);

@@ -1,12 +1,12 @@
 import API from '../utils/request';
 
-export const loginUser = async ({email, password}) => {
-   const response = await API.post('/login', {email, password});
+export const loginUser = async (payload) => {
+   const response = await API.post('/login', payload);
    return response.data;
 };
 
-export const registerUser = async ({first_name, last_name, email, password, bYear, bMonth, bDay, gender}) => {
-   const response = await API.post('/register', {first_name, last_name, email, password, bYear, bMonth, bDay, gender});
+export const registerUser = async (payload) => {
+   const response = await API.post('/register', payload);
    return response.data;
 }
 
@@ -25,5 +25,15 @@ export const activateAccount = async (token) => {
          Authorization: `Bearer ${token}`,
       },
    });
+   return response.data;
+}
+
+export const findUser = async (email) => {
+   const response = await API.post('findUser', email);
+   return response.data;
+}
+
+export const sendResetPasswordCode = async (email) => {
+   const response = await API.post('/sendResetPasswordCode', email);
    return response.data;
 }

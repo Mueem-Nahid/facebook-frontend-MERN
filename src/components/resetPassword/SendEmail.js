@@ -1,13 +1,12 @@
 import {Link} from "react-router-dom";
-import axios from "axios";
+
+import {sendResetPasswordCode} from "../../apiServices/userAuth";
 
 const SendEmail = ({userInfo, error, email, setError, setUserInfo, setLoading, setVisible, loading}) => {
    const sendEmail = async () => {
       try {
          setLoading(true);
-         const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/sendResetPasswordCode`,
-            {email}
-         );
+         const data = await sendResetPasswordCode({email});
          console.log("Res:", data)
          setError("");
          setVisible(2);

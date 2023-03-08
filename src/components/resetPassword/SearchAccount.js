@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import {Form, Formik} from "formik";
 import {Link} from "react-router-dom";
 import LoginInput from "../inputs/loginInput";
-import axios from "axios";
+import {findUser} from "../../apiServices/userAuth";
 
 const SearchAccount = ({email, setEmail, error, setLoading, setError, setUserInfo, setVisible}) => {
 
@@ -15,7 +15,7 @@ const SearchAccount = ({email, setEmail, error, setLoading, setError, setUserInf
    const handleSearch = async () => {
       try {
          setLoading(true);
-         const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/findUser`, {email});
+         const data = await findUser({email});
          setUserInfo(data);
          setVisible(1);
          setError("");
