@@ -18,3 +18,12 @@ export const sendVerificationEmail = async (token) => {
    });
    return response.data;
 }
+
+export const activateAccount = async (token) => {
+   const response = await API.post('/activate', {token}, {
+      headers: {
+         Authorization: `Bearer ${token}`,
+      },
+   });
+   return response.data;
+}

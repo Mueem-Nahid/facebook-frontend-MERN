@@ -1,4 +1,3 @@
-import axios from "axios";
 import Cookies from 'js-cookie';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,6 +9,7 @@ import LeftHome from "../../components/home/left";
 import RightHome from "../../components/home/right";
 import Stories from "../../components/home/stories";
 import CreatePost from "../../components/createPost";
+import {activateAccount} from "../../apiServices/userAuth";
 import ActivateForm from "../../components/activateForm/ActivateForm";
 
 export default function Activate() {
@@ -21,32 +21,31 @@ export default function Activate() {
    const [loading, setLoading] = useState(true);
    const {token} = useParams();
 
-   useEffect(() => {
-      activateAccount();
-   }, []);
-
-   const activateAccount = async () => {
+   const handleActivateAccount = async () => {
       try {
          setLoading(true);
-         const {data} = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/activate`, {token}, {
-            headers: {
-               Authorization: `Bearer ${user?.token}`,
-            },
-         });
+         const data = await activateAccount(token);
          setSuccess(data?.message);
+
          // updating verification status into cookies & redux store
          Cookies.set("user", JSON.stringify({...user, verified: true}));
          dispatch({type: "VERIFY", payload: true});
+
          setTimeout(() => {
             navigate("/");
-         }, 2000);
+         }, 4000);
+
       } catch (error) {
          setError(error.response.data.message);
          setTimeout(() => {
             navigate("/");
-         }, 3000);
+         }, 4000);
       }
-   }
+   };
+
+   useEffect(() => {
+      handleActivateAccount();
+   }, []);
 
    return (<div className="home">
       {success &&
