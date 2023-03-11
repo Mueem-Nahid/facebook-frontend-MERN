@@ -7,9 +7,9 @@ const SendEmail = ({userInfo, error, email, setError, setUserInfo, setLoading, s
       try {
          setLoading(true);
          const data = await sendResetPasswordCode({email});
-         console.log("Res:", data)
          setError("");
          setVisible(2);
+         setLoading(false);
       } catch (err) {
          setLoading(false);
          setError(err.response.data.message);

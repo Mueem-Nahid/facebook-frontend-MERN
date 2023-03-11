@@ -54,7 +54,9 @@ const ResetPassword = () => {
                           setVisible={setVisible} userInfo={userInfo}/>
             }
             {
-               visible === 2 && <CodeVerification code={code} setCode={setCode} error={error}/>
+               visible === 2 &&
+               <CodeVerification userInfo={userInfo} code={code} setCode={setCode} error={error} setError={setError}
+                                 setLoading={setLoading} loading={loading} setVisible={setVisible}/>
             }
             {
                visible === 3 &&

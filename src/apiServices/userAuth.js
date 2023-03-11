@@ -29,11 +29,16 @@ export const activateAccount = async (token) => {
 }
 
 export const findUser = async (email) => {
-   const response = await API.post('findUser', email);
+   const response = await API.post('/findUser', email);
    return response.data;
 }
 
 export const sendResetPasswordCode = async (email) => {
    const response = await API.post('/sendResetPasswordCode', email);
+   return response.data;
+}
+
+export const validateResetPasswordCode = async (payload) => {
+   const response = await API.post('/validateResetPasswordCode', payload);
    return response.data;
 }
