@@ -2,7 +2,7 @@ import API from '../utils/request';
 
 export const loginUser = async (payload) => {
    const response = await API.post('/login', payload);
-   return response.data;
+   return response.data?.data;
 };
 
 export const registerUser = async (payload) => {
@@ -30,12 +30,12 @@ export const activateAccount = async (token) => {
 
 export const findUser = async (email) => {
    const response = await API.post('/findUser', email);
-   return response.data;
+   return response.data?.data;
 }
 
 export const sendResetPasswordCode = async (email) => {
    const response = await API.post('/sendResetPasswordCode', email);
-   return response.data;
+   return response.data?.data;
 }
 
 export const validateResetPasswordCode = async (payload) => {

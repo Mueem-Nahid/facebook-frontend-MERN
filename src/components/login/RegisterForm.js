@@ -88,8 +88,8 @@ export default function RegisterForm({setVisible}) {
          setSuccess(data.message);
          const {message, ...rest} = data; // extracting every info except message
          setTimeout(() => {
-            dispatch({type: "LOGIN", payload: rest});
-            Cookies.set("user", JSON.stringify(rest));
+            dispatch({type: "LOGIN", payload: rest?.data});
+            Cookies.set("user", JSON.stringify(rest?.data));
             navigate("/");
          }, 3000);
       } catch (error) {
