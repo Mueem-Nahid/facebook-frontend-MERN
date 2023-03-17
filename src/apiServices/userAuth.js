@@ -42,3 +42,8 @@ export const validateResetPasswordCode = async (payload) => {
    const response = await API.post('/validateResetPasswordCode', payload);
    return response.data;
 }
+
+export const changePassword = async (payload) => {
+   const response = await API.post('/changePassword', payload);
+   return response.data;
+}

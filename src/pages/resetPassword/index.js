@@ -61,7 +61,8 @@ const ResetPassword = () => {
             {
                visible === 3 &&
                <ChangePassword password={password} confirmPassword={confirmPassword} setPassword={setPassword}
-                               setConfirmPassword={setConfirmPassword} error={error}/>
+                               setConfirmPassword={setConfirmPassword} error={error} setError={setError}
+                               loading={loading} setLoading={setLoading} setVisible={setVisible} userInfo={userInfo}/>
             }
          </div>
          <LoginFooter/>
