@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react';
 import EmojiPicker from "emoji-picker-react";
+import {useEffect, useRef, useState} from 'react';
 
-const TextareaWithEmojiPicker = ({text, textRef, setText}) => {
+const TextareaWithEmojiPicker = ({text, setText, type2}) => {
    const [picker, setPicker] = useState(false);
    const [cursorPosition, setCursorPosition] = useState();
+   const textRef = useRef(null);
 
    const previewConfig = {
       showPreview: false
@@ -24,15 +25,24 @@ const TextareaWithEmojiPicker = ({text, textRef, setText}) => {
    }, [cursorPosition]);
 
    return (
-      <div className="post_emojis_wrap">
-         {
-            picker && <div className="comment_emoji_picker rlmove">
-               <EmojiPicker onEmojiClick={handleEmoji} height={350} width={300} searchDisabled
-                            previewConfig={previewConfig}/>
-            </div>
-         }
-         <img src="../../../icons/colorful.png" alt="colorful"/>
-         <i className="emoji_icon_large" onClick={() => setPicker(prev => !prev)}></i>
+      <div className={type2 && "images_input"}>
+         <div className={!type2 && "flex_center"}>
+            <textarea className={`post_input ${type2 && 'post_input_2'}`} ref={textRef} maxLength="600" value={text}
+                      onChange={(e) => setText(e.target.value)} placeholder="What's on your mind, Mueem?">
+            </textarea>
+         </div>
+         <div className={!type2 && 'post_emojis_wrap'}>
+            {
+               picker && <div className={`comment_emoji_picker ${type2 ? 'move_picker_2' : 'move_picker'}`}>
+                  <EmojiPicker onEmojiClick={handleEmoji} height={350} width={300} searchDisabled
+                               previewConfig={previewConfig}/>
+               </div>
+            }
+            {
+               !type2 && <img src="../../../icons/colorful.png" alt="colorful"/>
+            }
+            <i className={`emoji_icon_large ${type2 && "move_left"}`} onClick={() => setPicker(prev => !prev)}></i>
+         </div>
       </div>
    );
 };

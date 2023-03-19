@@ -68,6 +68,10 @@
    margin-bottom: 1px;
 }
 
+.images_input {
+   display: flex;
+}
+
 .flex_center {
    min-height: 90px;
    position: relative;
@@ -101,7 +105,7 @@
 .post_emojis_wrap {
    position: relative;
    display: flex;
-   align-items: flex-end;
+   align-items: center;
    justify-content: space-between;
    padding: 10px 15px;
 }
@@ -121,7 +125,7 @@
    bottom: 2.5rem;
 }
 
-.rlmove {
+.move_picker {
    right: -7rem;
 }
 
@@ -150,7 +154,7 @@
    border-radius: 50%;
 }
 
-.post_submit{
+.post_submit {
    width: calc(100% - 18px);
    margin: 5px 10px;
    padding: 10px;
@@ -161,4 +165,26 @@
    font-weight: 600;
    border-radius: 5px;
    cursor: pointer;
+}
+
+.overflow_a {
+   max-height: 500px;
+   overflow-y: auto;
+}
+
+.move_left {
+   transform: translateX(-10px);
+}
+
+.move_picker_2 {
+   right: 1rem;
+   top: 9.7rem;
+   z-index: 9999;
+}
+
+.post_input_2 {
+   position: relative;
+   display: block;
+   font-size: 15px;
+   min-height: 15px !important;
 }
