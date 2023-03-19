@@ -1,6 +1,7 @@
 import {useRef, useState} from "react";
 
 import './style.css';
+import AddToYourPost from "./AddToYourPost";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 
 const CreatePostPopup = () => {
@@ -31,14 +32,18 @@ const CreatePostPopup = () => {
                </div>
             </div>
             {
-               !showPrev && <div className="flex_center">
-               <textarea className="post_input" ref={textRef} maxLength="600" value={text}
-                         onChange={(e) => setText(e.target.value)} placeholder="What's on your mind, Mueem?">
+               !showPrev && <>
+                  <div className="flex_center">
+                     <textarea className="post_input" ref={textRef} maxLength="600" value={text}
+                               onChange={(e) => setText(e.target.value)} placeholder="What's on your mind, Mueem?">
 
-               </textarea>
-               </div>
+                     </textarea>
+                  </div>
+                  <TextareaWithEmojiPicker text={text} textRef={textRef} setText={setText}/>
+               </>
             }
-            <TextareaWithEmojiPicker text={text} textRef={textRef} setText={setText}/>
+            <AddToYourPost/>
+            <button className="post_submit">Post</button>
          </div>
       </div>
    );

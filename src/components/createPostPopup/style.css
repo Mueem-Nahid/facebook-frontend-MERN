@@ -124,3 +124,41 @@
 .rlmove {
    right: -7rem;
 }
+
+.add_to_your_post {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin: 0 10px;
+   padding: 10px;
+   border-radius: 10px;
+   border: 3px solid var(--bg-forth);
+}
+
+.add_to_your_post_text {
+   width: 50%;
+   font-weight: 600;
+   font-size: 14px;
+}
+
+.post_header_right {
+   width: 35px;
+   height: 35px;
+   display: grid;
+   place-items: center;
+   cursor: pointer;
+   border-radius: 50%;
+}
+
+.post_submit{
+   width: calc(100% - 18px);
+   margin: 5px 10px;
+   padding: 10px;
+   outline: none;
+   border: none;
+   background: var(--blue-color);
+   color: var(--bg-primary);
+   font-weight: 600;
+   border-radius: 5px;
+   cursor: pointer;
+}
