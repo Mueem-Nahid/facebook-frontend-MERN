@@ -11,7 +11,8 @@ const ImagePreview = ({text, setText, images, setImages}) => {
    };
 
    const handleImages = (e) => {
-      let files = Array.form(e.target.files); //by default, it gives file list, converting them into an array
+      console.log(e)
+      let files = Array.from(e.target.files); //by default, it gives file list, converting them into an array
       files.forEach((img) => {
          const reader = new FileReader();
          reader.readAsDataURL(img);
