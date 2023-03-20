@@ -35,7 +35,7 @@ const CreatePostPopup = () => {
             {
                !showPrev ?
                   <TextareaWithEmojiPicker text={text} setText={setText}/>
-                  : <ImagePreview text={text} setText={setText}/>
+                  : <ImagePreview text={text} setText={setText} images={images} setImages={setImages}/>
             }
             <AddToYourPost/>
             <button className="post_submit">Post</button>
