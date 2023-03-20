@@ -6,9 +6,20 @@ import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 const ImagePreview = ({text, setText, images, setImages}) => {
    const imageInputRef = useRef(null);
 
-   const handleImages = () => {
+   const handleOpenInput = () => {
+      imageInputRef.current.click();
+   };
 
-   }
+   const handleImages = (e) => {
+      let files = Array.form(e.target.files); //by default, it gives file list, converting them into an array
+      files.forEach((img) => {
+         const reader = new FileReader();
+         reader.readAsDataURL(img);
+         reader.onload = (readerEvent) => {
+            setImages((images) => [...images, readerEvent.target.result]);
+         };
+      });
+   };
 
    return (
       <div className="overflow_a">
@@ -21,7 +32,7 @@ const ImagePreview = ({text, setText, images, setImages}) => {
                      <div className="small_white_circle">
                         <i className="exit_icon"></i>
                      </div>
-                     <div className="add_col">
+                     <div className="add_col" onClick={handleOpenInput}>
                         <div className="add_circle">
                            <i className="addPhoto_icon"></i>
                         </div>

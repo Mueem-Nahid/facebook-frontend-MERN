@@ -25,13 +25,13 @@ const TextareaWithEmojiPicker = ({text, setText, type2}) => {
    }, [cursorPosition]);
 
    return (
-      <div className={type2 && "images_input"}>
-         <div className={!type2 && "flex_center"}>
-            <textarea className={`post_input ${type2 && 'post_input_2'}`} ref={textRef} maxLength="600" value={text}
+      <div className={type2 ? "images_input" : ""}>
+         <div className={!type2 ? "flex_center" : ""}>
+            <textarea className={`post_input ${type2 ? 'post_input_2' : ''}`} ref={textRef} maxLength="600" value={text}
                       onChange={(e) => setText(e.target.value)} placeholder="What's on your mind, Mueem?">
             </textarea>
          </div>
-         <div className={!type2 && 'post_emojis_wrap'}>
+         <div className={!type2 ? 'post_emojis_wrap' : ""}>
             {
                picker && <div className={`comment_emoji_picker ${type2 ? 'move_picker_2' : 'move_picker'}`}>
                   <EmojiPicker onEmojiClick={handleEmoji} height={350} width={300} searchDisabled
@@ -41,7 +41,7 @@ const TextareaWithEmojiPicker = ({text, setText, type2}) => {
             {
                !type2 && <img src="../../../icons/colorful.png" alt="colorful"/>
             }
-            <i className={`emoji_icon_large ${type2 && "move_left"}`} onClick={() => setPicker(prev => !prev)}></i>
+            <i className={`emoji_icon_large ${type2 ? "move_left" : ""}`} onClick={() => setPicker(prev => !prev)}></i>
          </div>
       </div>
    );
