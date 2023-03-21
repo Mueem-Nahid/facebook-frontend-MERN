@@ -323,11 +323,34 @@
 }
 
 .preview_2 {
+   height: 100%;
+   display: flex;
+   gap: 2px;
+}
 
+.preview_2 img {
+   width: 50%;
+   height: 230px;
+   object-fit: cover;
 }
 
 .preview_3 {
+   height: 100%;
+   width: 100%;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   gap: 2px;
+}
 
+.preview_3 img {
+   width: 100%;
+   height: 200px;
+   object-fit: cover;
+}
+
+.preview_3 img:nth-child(1) {
+   grid-column: 1/3;
 }
 
 .preview_4 {
