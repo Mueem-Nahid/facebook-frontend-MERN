@@ -274,3 +274,70 @@
    right: 10px;
    cursor: pointer;
 }
+
+.p_0 {
+   padding: 0;
+   border-radius: 10px;
+   height: 100%;
+   cursor: default;
+   overflow: hidden;
+}
+
+.preview_actions {
+   position: absolute;
+   left: 1rem;
+   top: 1rem;
+   gap: 1rem;
+   display: none;
+}
+
+.preview_actions button {
+   outline: none;
+   border-radius: 7px;
+   border: none;
+   padding: 8px 10px;
+   background: var(--bg-primary);
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   cursor: pointer;
+   font-weight: 600;
+   font-size: 14px;
+   font-family: inherit;
+   color: var(--color-primary);
+}
+
+.p_0:hover .preview_actions {
+   display: flex;
+}
+
+.preview_1 {
+   width: 100%;
+   height: 100%;
+}
+
+.preview_1 img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.preview_2 {
+
+}
+
+.preview_3 {
+
+}
+
+.preview_4 {
+
+}
+
+.preview_5 {
+
+}
+
+.preview_6 {
+
+}
