@@ -49,7 +49,8 @@ const ImagePreview = ({text, setText, images, setImages}) => {
                               images.length === 3 ? "preview_3" :
                                  images.length === 4 ? "preview_4" :
                                     images.length === 5 ? "preview_5" :
-                                       "preview_6"
+                                       images.length % 2 === 0 ? "preview_6" :
+                                          "preview_6 singular_grid"
                      }>
                         {
                            images.map((img, i) => (
