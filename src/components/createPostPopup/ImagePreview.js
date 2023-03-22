@@ -3,12 +3,16 @@ import {useRef} from "react";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 
 
-const ImagePreview = ({text, setText, images, setImages}) => {
+const ImagePreview = ({text, setText, images, setImages, setShowPrev}) => {
    const imageInputRef = useRef(null);
 
    const handleOpenInput = () => {
       imageInputRef.current.click();
    };
+
+   const handleRemoveAllImages = () => {
+      setImages([]);
+   }
 
    const handleImages = (e) => {
       console.log(e)
@@ -35,12 +39,12 @@ const ImagePreview = ({text, setText, images, setImages}) => {
                            <i className="edit_icon"></i>
                            <span>Edit</span>
                         </button>
-                        <button className="hover1">
+                        <button className="hover1" onClick={handleOpenInput}>
                            <i className="addPhoto_icon"></i>
                            <span>Add</span>
                         </button>
                      </div>
-                     <div className="small_white_circle">
+                     <div className="small_white_circle" onClick={handleRemoveAllImages}>
                         <i className="exit_icon"></i>
                      </div>
                      <div className={
@@ -61,7 +65,7 @@ const ImagePreview = ({text, setText, images, setImages}) => {
                   </div>
                   :
                   <div className="add_pics_inside_1">
-                     <div className="small_white_circle">
+                     <div className="small_white_circle" onClick={() => setShowPrev(false)}>
                         <i className="exit_icon"></i>
                      </div>
                      <div className="add_col" onClick={handleOpenInput}>

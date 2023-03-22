@@ -220,6 +220,7 @@
    right: 10px;
    top: 10px;
    z-index: 99;
+   cursor: pointer;
 }
 
 .add_col {

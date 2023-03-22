@@ -1,11 +1,11 @@
 import {Dots, Feeling, Photo} from "../../svg";
 import {dotsIconColor, feelingIconColor, photoIconColor} from "../../utils/variables";
 
-const AddToYourPost = () => {
+const AddToYourPost = ({setShowPrev}) => {
    return (
       <div className="add_to_your_post">
          <div className="add_to_your_post_text">Add to your post</div>
-         <div className="post_header_right hover1">
+         <div className="post_header_right hover1" onClick={() => setShowPrev(true)}>
             <Photo color={photoIconColor}/>
          </div>
          <div className="post_header_right hover1">
