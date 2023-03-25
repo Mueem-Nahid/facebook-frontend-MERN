@@ -1,5 +1,5 @@
 import {Dots, Feeling, Photo} from "../../svg";
-import {dotsIconColor, feelingIconColor, photoIconColor} from "../../utils/variables";
+import {dotsIconColor, feelingIconColor, photoIconColor} from "../../utils/constants";
 
 const AddToYourPost = ({setShowPrev}) => {
    return (

@@ -19,7 +19,7 @@ import "./style.css";
 import Index from "./userMenu";
 import AllMenu from "./AllMenu";
 import SearchMenu from "./SearchMenu";
-import {searchbarColor} from "../../utils/variables";
+import {searchbarColor} from "../../utils/constants";
 import useClickOutside from "../../hooks/useClickOutside";
 
 const Header = () => {

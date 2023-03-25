@@ -2,7 +2,7 @@ import "./style.css";
 import Story from "./story";
 import {stories} from "../../../data/home";
 import {ArrowRight, Plus} from "../../../svg";
-import {searchbarColor} from "../../../utils/variables";
+import {searchbarColor} from "../../../utils/constants";
 import useMediaQueryVariables from "../../../hooks/useMediaQueryVariables";
 
 const Stories = () => {

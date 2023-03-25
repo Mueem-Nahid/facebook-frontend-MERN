@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import DotLoader from "react-spinners/DotLoader";
 import {Link, useNavigate} from 'react-router-dom';
 
-import {loaderColor} from "../../utils/variables";
+import {loaderColor} from "../../utils/constants";
 import {loginUser} from "../../apiServices/userAuth";
 import LoginInput from '../../components/inputs/loginInput';
 

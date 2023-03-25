@@ -7,8 +7,9 @@ import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 
 const CreatePostPopup = () => {
    const [text, setText] = useState("");
-   const [showPrev, setShowPrev] = useState(true);
+   const [showPrev, setShowPrev] = useState(false);
    const [images, setImages] = useState([]);
+   const [background, setBackground] = useState("");
 
    return (
       <div className="blur">
@@ -34,7 +35,7 @@ const CreatePostPopup = () => {
             </div>
             {
                !showPrev ?
-                  <TextareaWithEmojiPicker text={text} setText={setText}/>
+                  <TextareaWithEmojiPicker text={text} setText={setText} background={background} setBackground={setBackground}/>
                   : <ImagePreview text={text} setText={setText} images={images} setImages={setImages} setShowPrev={setShowPrev}/>
             }
             <AddToYourPost setShowPrev={setShowPrev}/>

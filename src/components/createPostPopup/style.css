@@ -409,3 +409,36 @@
 .singular_grid img:nth-child(1) {
    grid-column: 1/3;
 }
+
+.post_background {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.post_background img {
+   width: 35px;
+   height: 35px;
+   object-fit: cover;
+   border-radius: 10px;
+}
+
+.no_background {
+   background: var(--bg-secondary);
+   width: 35px;
+   height: 35px;
+   cursor: pointer;
+   border-radius: 10px;
+}
+
+.background_handler {
+   height: 360px;
+   width: 100%;
+   background-size: cover;
+}
+
+.background_handler textarea{
+   text-align: center;
+   height: 360px;
+   margin-top: 10px;
+}

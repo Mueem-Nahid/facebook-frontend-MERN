@@ -1,6 +1,6 @@
 import './style.css';
 import {PropagateLoader} from "react-spinners";
-import {loaderColor} from "../../utils/variables";
+import {loaderColor} from "../../utils/constants";
 
 const ActivateForm = ({type, header, text, loading}) => {
    return (

@@ -1,7 +1,7 @@
 import "./style.css";
 import Contact from "./Contact";
 import {Dots, NewRoom, Search} from "../../../svg";
-import {searchbarColor} from "../../../utils/variables";
+import {searchbarColor} from "../../../utils/constants";
 
 const RightHome = ({user}) => {
    return (

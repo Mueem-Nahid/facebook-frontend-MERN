@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
 
 import GenderSelect from "./GenderSelect";
-import {loaderColor} from "../../utils/variables";
+import {loaderColor} from "../../utils/constants";
 import RegisterInput from "../inputs/registerInput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
 import {registerUser} from "../../apiServices/userAuth";

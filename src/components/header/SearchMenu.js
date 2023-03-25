@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 
 import {Return, Search} from "../../svg";
-import {searchbarColor} from "../../utils/variables";
+import {searchbarColor} from "../../utils/constants";
 import useClickOutside from "../../hooks/useClickOutside";
 
 const SearchMenu = ({setShowSearchMenu}) => {
