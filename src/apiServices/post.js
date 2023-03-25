@@ -1,8 +1,8 @@
 import API from "../utils/request";
 
-export const createPost = async (type, background, text, images, userid, token) => {
+export const createPost = async (type, background, text, images, user, token) => {
    const response = await API.post('/createPost',
-      {type, background, text, images, userid}, {
+      {type, background, text, images, user}, {
          headers: {
             Authorization: `Bearer ${token}`,
          },
