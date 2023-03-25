@@ -15,7 +15,6 @@ const ImagePreview = ({text, setText, images, setImages, setShowPrev}) => {
    }
 
    const handleImages = (e) => {
-      console.log(e)
       let files = Array.from(e.target.files); //by default, it gives file list, converting them into an array
       files.forEach((img) => {
          const reader = new FileReader();

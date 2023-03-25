@@ -5,9 +5,10 @@ import './style.css';
 import PostError from "./PostError";
 import ImagePreview from "./ImagePreview";
 import AddToYourPost from "./AddToYourPost";
-import {createPost} from "../../apiServices/post";
+import {createPost, uploadImages} from "../../apiServices/post";
 import useClickOutside from "../../hooks/useClickOutside";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
+import dataURItoBlob from "../../utils/dataURItoBlob";
 
 const CreatePostPopup = ({user, setCreatePostVisibility}) => {
    const createPostModal = useRef(null);
@@ -22,15 +23,37 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
       setCreatePostVisibility(false);
    });
 
+   const prepareToPost = async (type, background, text, images, user, token) => {
+      setLoading(true);
+      await createPost(type, background, text, images, user, token);
+      setLoading(false);
+      setCreatePostVisibility(false);
+      background && setBackground("");
+      text && setText("");
+      images && setImages("");
+   }
+
    const handlePostSubmit = async () => {
       try {
          if (background) {
+            await prepareToPost(null, background, text, null, user.id, user.token);
+         } else if (images && images.length) {
             setLoading(true);
-            await createPost(null, background, text, null, user.id, user.token);
-            setLoading(false);
-            setCreatePostVisibility(false);
-            setBackground("");
-            setText("");
+            const preparedImages = images.map((img) => {
+               return dataURItoBlob(img);
+            });
+            const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/post Images`;
+            let formData = new FormData();
+            formData.append("path", path);
+            preparedImages.forEach((image) => {
+               formData.append("file", image);
+            });
+            const arrayOfImages = await uploadImages(formData, path, user.token);
+            await prepareToPost(null, null, text, arrayOfImages, user.id, user.token);
+         } else if (text) {
+            await prepareToPost(null, null, text, null, user.id, user.token);
+         } else {
+            console.log("Nothing")
          }
       } catch (error) {
          setLoading(false);
