@@ -1,10 +1,13 @@
 import {useRef, useState} from "react";
+import {PulseLoader} from "react-spinners";
 
 import './style.css';
 import ImagePreview from "./ImagePreview";
 import AddToYourPost from "./AddToYourPost";
-import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
+import {createPost} from "../../apiServices/post";
 import useClickOutside from "../../hooks/useClickOutside";
+import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
+import PostError from "./PostError";
 
 const CreatePostPopup = ({user, setCreatePostVisibility}) => {
    const createPostModal = useRef(null);
@@ -12,14 +15,36 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
    const [showPrev, setShowPrev] = useState(false);
    const [images, setImages] = useState([]);
    const [background, setBackground] = useState("");
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState("");
 
    useClickOutside(createPostModal, () => {
       setCreatePostVisibility(false);
-   })
+   });
+
+   const handlePostSubmit = async () => {
+      try {
+         if (background) {
+            setLoading(true);
+            const res = await createPost(null, background, text, null, user.id, user.token);
+            console.log("res", res)
+            setLoading(false);
+            setCreatePostVisibility(false);
+            setBackground("");
+            setText("");
+         }
+      } catch (error) {
+         setLoading(false);
+         setError(error.response.data.message)
+      }
+   }
 
    return (
       <div className="blur">
          <div className="postBox" ref={createPostModal}>
+            {
+               error && <PostError error={error} setError={setError}/>
+            }
             <div className="box_header">
                <div className="small_circle" onClick={() => setCreatePostVisibility(false)}>
                   <i className="exit_icon"></i>
@@ -47,7 +72,9 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
                                   setShowPrev={setShowPrev}/>
             }
             <AddToYourPost setShowPrev={setShowPrev}/>
-            <button className="post_submit">Post</button>
+            <button className="post_submit" onClick={handlePostSubmit} disabled={loading}>
+               {loading ? <PulseLoader color="#fff" size="5px"/> : "Post"}
+            </button>
          </div>
       </div>
    );
