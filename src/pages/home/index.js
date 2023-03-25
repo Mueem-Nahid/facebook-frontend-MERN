@@ -1,5 +1,3 @@
-import {useSelector} from "react-redux";
-
 import "./style.css";
 import Header from "../../components/header";
 import LeftHome from "../../components/home/left";
@@ -8,8 +6,8 @@ import Stories from "../../components/home/stories";
 import CreatePost from "../../components/createPost";
 import SendVerificationEmail from "../../components/home/sendVerificationEmail";
 
-export default function Home() {
-   const {user} = useSelector((state) => ({...state}));
+export default function Home({user, setCreatePostVisibility}) {
+   // const {user} = useSelector((state) => ({...state}));
 
    return (
       <div className="home">
@@ -20,7 +18,7 @@ export default function Home() {
             {
                !user.verified && <SendVerificationEmail user={user}/>
             }
-            <CreatePost user={user}/>
+            <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility}/>
          </div>
          <RightHome user={user}/>
       </div>
