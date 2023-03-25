@@ -2,12 +2,12 @@ import {useRef, useState} from "react";
 import {PulseLoader} from "react-spinners";
 
 import './style.css';
+import PostError from "./PostError";
 import ImagePreview from "./ImagePreview";
 import AddToYourPost from "./AddToYourPost";
 import {createPost} from "../../apiServices/post";
 import useClickOutside from "../../hooks/useClickOutside";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
-import PostError from "./PostError";
 
 const CreatePostPopup = ({user, setCreatePostVisibility}) => {
    const createPostModal = useRef(null);
@@ -26,8 +26,7 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
       try {
          if (background) {
             setLoading(true);
-            const res = await createPost(null, background, text, null, user.id, user.token);
-            console.log("res", res)
+            await createPost(null, background, text, null, user.id, user.token);
             setLoading(false);
             setCreatePostVisibility(false);
             setBackground("");
