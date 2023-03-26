@@ -91,7 +91,7 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
                   <TextareaWithEmojiPicker text={text} setText={setText} background={background}
                                            setBackground={setBackground}/>
                   : <ImagePreview text={text} setText={setText} images={images} setImages={setImages}
-                                  setShowPrev={setShowPrev}/>
+                                  setShowPrev={setShowPrev} setError={setError}/>
             }
             <AddToYourPost setShowPrev={setShowPrev}/>
             <button className="post_submit" onClick={handlePostSubmit} disabled={loading}>

@@ -17,6 +17,8 @@ const postBackground = [
    "../../../images/postbackgrounds/7.jpg",
    "../../../images/postbackgrounds/8.jpg",
    "../../../images/postbackgrounds/9.jpg",
-]
+];
 
-export {searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground}
+const maxFileSize = 1024 * 1024; // 1MB in bytes
+
+export {searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground, maxFileSize}
