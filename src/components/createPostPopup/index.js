@@ -52,8 +52,6 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
             await prepareToPost(null, null, text, arrayOfImages, user.id, user.token);
          } else if (text) {
             await prepareToPost(null, null, text, null, user.id, user.token);
-         } else {
-            console.log("Nothing")
          }
       } catch (error) {
          setLoading(false);
