@@ -23,14 +23,14 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
       setCreatePostVisibility(false);
    });
 
-   const prepareToPost = async (type, background, text, images, user, token) => {
+   const prepareToPost = async (type, background, text, arrayOfImages, user, token) => {
       setLoading(true);
-      await createPost(type, background, text, images, user, token);
+      await createPost(type, background, text, arrayOfImages, user, token);
       setLoading(false);
       setCreatePostVisibility(false);
       background && setBackground("");
       text && setText("");
-      images && setImages("");
+      images.length > 0 && setImages([]);
    }
 
    const handlePostSubmit = async () => {

@@ -8,7 +8,7 @@ export const createPost = async (type, background, text, images, user, token) =>
          },
       });
    return response.data;
-}
+};
 
 export const uploadImages = async (formData, path, token) => {
    const response = await API.post('/uploadImages', formData, {
@@ -18,4 +18,14 @@ export const uploadImages = async (formData, path, token) => {
       },
    });
    return response?.data?.data?.images;
-}
+};
+
+export const getPosts = async (token) => {
+   const response = await API.get('/getAllPosts', {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      },
+   );
+   return response.data;
+};

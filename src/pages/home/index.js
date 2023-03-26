@@ -6,8 +6,7 @@ import Stories from "../../components/home/stories";
 import CreatePost from "../../components/createPost";
 import SendVerificationEmail from "../../components/home/sendVerificationEmail";
 
-export default function Home({user, setCreatePostVisibility}) {
-   // const {user} = useSelector((state) => ({...state}));
+export default function Home({user, posts, setCreatePostVisibility}) {
 
    return (
       <div className="home">
@@ -19,6 +18,13 @@ export default function Home({user, setCreatePostVisibility}) {
                !user.verified && <SendVerificationEmail user={user}/>
             }
             <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility}/>
+            {
+               posts.length > 0 && posts.map((post) => (
+                  <div className="post" key={post._id}>
+                     {post._id}
+                  </div>
+               ))
+            }
          </div>
          <RightHome user={user}/>
       </div>
