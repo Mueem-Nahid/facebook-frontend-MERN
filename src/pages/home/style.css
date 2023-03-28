@@ -13,6 +13,11 @@
    transform: translateX(-50%);
 }
 
+.posts {
+   margin-top: 1rem;
+   width: 100%;
+}
+
 @media (max-width: 1175px) {
    .home_middle .stories,
    .home_middle .create_post {

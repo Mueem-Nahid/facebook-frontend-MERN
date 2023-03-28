@@ -34,6 +34,7 @@ function App() {
             payload: data,
          });
       } catch (error) {
+         console.log("error", error, "user:", user)
          dispatch({
             type: "POSTS_ERROR",
             payload: error.response.data.message,
@@ -42,8 +43,8 @@ function App() {
    };
 
    useEffect(() => {
-      getAllPosts();
-   }, [])
+      user  && getAllPosts();
+   }, [user])
 
    return (
       <div>

@@ -7,6 +7,8 @@ const feelingIconColor = "#f7b928";
 
 const dotsIconColor = "#65676b";
 
+const publicIconColor = "#828387";
+
 const postBackground = [
    "../../../images/postbackgrounds/1.jpg",
    "../../../images/postbackgrounds/2.jpg",
@@ -21,4 +23,7 @@ const postBackground = [
 
 const maxFileSize = 1024 * 1024; // 1MB in bytes
 
-export {searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground, maxFileSize}
+export {
+   searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground, maxFileSize,
+   publicIconColor
+}
