@@ -7,7 +7,7 @@ import {dotsIconColor, publicIconColor} from "../../utils/constants";
 
 
 const Post = ({post}) => {
-   console.log(post)
+
    return (
       <div className="post">
          <div className="post_header">
