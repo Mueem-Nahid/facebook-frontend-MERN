@@ -1,12 +1,21 @@
+import {useState} from "react";
 import Moment from "react-moment";
 import {Link} from "react-router-dom";
 
 import "./style.css";
 import {Dots, Public} from "../../svg";
+import ReactsPopup from "./ReactsPopup";
 import {dotsIconColor, publicIconColor} from "../../utils/constants";
 
 
 const Post = ({post}) => {
+   const [visible, setVisible] = useState(false);
+
+   const handleReactsPopup = (show) => {
+      setTimeout(() => {
+         show ? setVisible(true) : setVisible(false);
+      }, 500)
+   }
 
    return (
       <div className="post">
@@ -66,8 +75,33 @@ const Post = ({post}) => {
                      </div>
                   }
                </>
-
          }
+         <div className="post_infos">
+            <div className="reacts_count">
+               <div className="reacts_count_images"></div>
+               <div className="reacts_count_numbers"></div>
+            </div>
+            <div className="to_right">
+               <div className="comments_count">13 comments</div>
+               <div className="share_count">1 share</div>
+            </div>
+         </div>
+         <div className="post_actions">
+            <ReactsPopup visible={visible} handleReactsPopup={handleReactsPopup}/>
+            <div className="post_action hover1" onMouseOver={() => handleReactsPopup(true)}
+                 onMouseLeave={() => handleReactsPopup(false)}>
+               <i className="like_icon"></i>
+               <span>Like</span>
+            </div>
+            <div className="post_action hover1">
+               <i className="comment_icon"></i>
+               <span>Comments</span>
+            </div>
+            <div className="post_action hover1">
+               <i className="share_icon"></i>
+               <span>Share</span>
+            </div>
+         </div>
       </div>
    );
 };

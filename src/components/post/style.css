@@ -74,6 +74,111 @@
    padding: 0 15px 10px 15px;
 }
 
+.post_infos {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px;
+}
+
+.reacts_count {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.reacts_count_images {
+   display: flex;
+   align-items: center;
+   gap: 1px;
+}
+
+.reacts_count_images img {
+   width: 10px;
+}
+
+.reacts_count_numbers {
+   font-size: 14px;
+   color: var(--color-secondary);
+}
+
+.to_right {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   color: var(--color-secondary);
+   font-size: 15px;
+}
+
+.comments_count:hover,
+.share_count:hover {
+   cursor: pointer;
+   text-decoration: underline;
+}
+
+.comments_count {
+
+}
+
+.share_count {
+
+}
+
+.post_actions {
+   position: relative;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   border-top: 1px solid var(--bg-third);
+   border-bottom: 1px solid var(--bg-third);
+   margin: 0 10px;
+   padding: 5px 0;
+}
+
+.post_action {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   cursor: pointer;
+   padding: 7px 0;
+   border-radius: 5px;
+}
+
+.post_action span {
+   color: var(--color-secondary);
+   font-weight: 600;
+   font-size: 14px;
+   transform: translateY(-1px);
+}
+
+.reacts_popup {
+   display: flex;
+   align-items: center;
+   position: absolute;
+   top: -3.4rem;
+   background: var(--bg-primary);
+   padding: 5px 15px;
+   border-radius: 50px;
+   gap: 8px;
+   box-shadow: 0 1px 2px var(--shadow-1);
+}
+
+.react {
+   cursor: pointer;
+   transition: all 0.2s;
+}
+
+.react:hover {
+   transform: scale(1.3);
+}
+
+.react img {
+   width: 42px;
+   height: 42px;
+   object-fit: cover;
+}
+
 /*-----------------------------GRID IMAGES----------------*/
 
 .grid_1 img {
@@ -293,6 +398,9 @@
    cursor: pointer;
 }
 
+/*-----------------------------GRID IMAGES END ----------------*/
+
+/*-----------------------------media queries ----------------*/
 
 @media (max-width: 1175px) {
    .post {

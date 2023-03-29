@@ -23,7 +23,34 @@ const postBackground = [
 
 const maxFileSize = 1024 * 1024; // 1MB in bytes
 
+const reactsArray = [
+   {
+      name: "like",
+      image: "../../../reacts/like.gif"
+   },
+   {
+      name: "love",
+      image: "../../../reacts/love.gif"
+   },
+   {
+      name: "haha",
+      image: "../../../reacts/haha.gif"
+   },
+   {
+      name: "wow",
+      image: "../../../reacts/wow.gif"
+   },
+   {
+      name: "sad",
+      image: "../../../reacts/sad.gif"
+   },
+   {
+      name: "angry",
+      image: "../../../reacts/angry.gif"
+   },
+]
+
 export {
    searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground, maxFileSize,
-   publicIconColor
+   publicIconColor, reactsArray
 }
