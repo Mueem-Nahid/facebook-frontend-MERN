@@ -1,19 +1,27 @@
+import {useEffect, useRef, useState} from "react";
+
 import "./style.css";
+import Post from "../../components/post";
 import Header from "../../components/header";
 import LeftHome from "../../components/home/left";
 import RightHome from "../../components/home/right";
 import Stories from "../../components/home/stories";
 import CreatePost from "../../components/createPost";
 import SendVerificationEmail from "../../components/home/sendVerificationEmail";
-import Post from "../../components/post";
 
 export default function Home({user, posts, setCreatePostVisibility}) {
+   const middle = useRef(null);
+   const [height, setHeight] = useState();
+
+   useEffect(() => {
+      setHeight(middle.current.clientHeight); // get the height of an element
+   }, [middle?.current?.clientHeight]);
 
    return (
-      <div className="home">
+      <div className="home" style={{height: `${height+150}px`}}>
          <Header/>
          <LeftHome user={user}/>
-         <div className="home_middle">
+         <div className="home_middle" ref={middle}>
             <Stories/>
             {
                !user.verified && <SendVerificationEmail user={user}/>

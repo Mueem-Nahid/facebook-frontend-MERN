@@ -1,11 +1,12 @@
 .post {
    position: relative;
+   width: 685px;
    background: var(--bg-primary);
    border-radius: 10px;
    box-shadow: 0 1px 2px var(--shadow-1);
    user-select: none;
    color: var(--color-primary);
-   margin-bottom: 10px;
+   margin-bottom: 20px;
 }
 
 .post_header {
@@ -290,4 +291,56 @@
    justify-content: center;
    color: var(--bg-primary);
    cursor: pointer;
+}
+
+
+@media (max-width: 1175px) {
+   .post {
+      width: 84%;
+   }
+}
+
+@media (max-width: 1030px) {
+   .post {
+      width: 100%;
+   }
+}
+
+@media (max-width: 965px) {
+   .post {
+      width: 93%;
+   }
+}
+
+@media (max-width: 905px) {
+   .post {
+      width: 112%;
+   }
+}
+
+@media (max-width: 630px) {
+   .post {
+      width: 100%;
+   }
+}
+
+@media (max-width: 415px) {
+   .post .grid_2 img,
+   .post .grid_3 img,
+   .post .grid_4 img,
+   .post .grid_5 img {
+      height: 240px;
+   }
+
+   .post .grid_1 {
+      height: 100%;
+   }
+
+   .post .grid_1 img {
+      height: 400px;
+   }
+
+   .post_bg {
+      height: 400px;
+   }
 }
