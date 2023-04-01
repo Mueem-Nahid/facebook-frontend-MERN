@@ -61,9 +61,12 @@ const CreateComment = ({user}) => {
                <div className="comment_circle_icon hover2" onClick={() => setPicker(prev => !prev)}>
                   <i className="emoji_icon"></i>
                </div>
-               <div className="comment_circle_icon hover2" onClick={handleOpenInput}>
-                  <i className="camera_icon"></i>
-               </div>
+               {
+                  commentImage.length === 0 &&
+                  <div className="comment_circle_icon hover2" onClick={handleOpenInput}>
+                     <i className="camera_icon"></i>
+                  </div>
+               }
                <div className="comment_circle_icon hover2">
                   <i className="gif_icon"></i>
                </div>
@@ -73,13 +76,13 @@ const CreateComment = ({user}) => {
             </div>
          </div>
          {
-            commentImage.length ?
-               <div className="comment_image_preview">
-                  <img src={commentImage[0]} alt=""/>
-                  <div className="small_white_circle" onClick={() => setCommentImage([])}>
-                     <i className="exit_icon"></i>
-                  </div>
-               </div> : ""
+            commentImage.length !== 0 &&
+            < div className="comment_image_preview">
+               <img src={commentImage[0]} alt=""/>
+               <div className="small_white_circle" onClick={() => setCommentImage([])}>
+                  <i className="exit_icon"></i>
+               </div>
+            </div>
          }
       </div>
    );

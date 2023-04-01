@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import {Link} from "react-router-dom";
 
 import "./style.css";
+import PostMenu from "./PostMenu";
 import {Dots, Public} from "../../svg";
 import ReactsPopup from "./ReactsPopup";
 import CreateComment from "./CreateComment";
@@ -11,6 +12,7 @@ import {dotsIconColor, publicIconColor} from "../../utils/constants";
 
 const Post = ({post, user}) => {
    const [visible, setVisible] = useState(false);
+   const [showMenu, setShowMenu] = useState(false);
 
    const handleReactsPopup = (show) => {
       setTimeout(() => {
@@ -43,7 +45,7 @@ const Post = ({post, user}) => {
                   </div>
                </div>
             </Link>
-            <div className="post_header_right hover1">
+            <div className="post_header_right hover1" onClick={() => setShowMenu(prev => !prev)}>
                <Dots color={dotsIconColor}/>
             </div>
          </div>
@@ -107,6 +109,10 @@ const Post = ({post, user}) => {
             <div className="comments_order"></div>
             <CreateComment user={user}/>
          </div>
+         {
+            showMenu && <PostMenu userId={user?.id} postUserId={post?.user?._id} imageLength={post?.images?.length}
+                                  setShowMenu={setShowMenu}/>
+         }
       </div>
    );
 };
