@@ -400,6 +400,88 @@
 
 /*-----------------------------GRID IMAGES END ----------------*/
 
+/*------------ create comment section ------------*/
+
+.comments_wrap {
+   padding: 10px 15px;
+}
+
+.comments_order {
+
+}
+
+.create_comment_wrap {
+
+}
+
+.create_comment {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.create_comment img {
+   width: 35px;
+   height: 35px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+.comment_input_wrap {
+   position: relative;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   background: var(--bg-forth);
+   border-radius: 50px;
+   padding-right: 10px;
+}
+
+.comment_input_wrap input {
+   outline: none;
+   border: none;
+   flex: 1;
+   height: 35px;
+   padding: 0 10px;
+   color: var(--color-primary);
+   background: transparent;
+}
+
+.comment_circle_icon {
+   height: 30px;
+   width: 30px;
+   border-radius: 50%;
+   display: grid;
+   place-items: center;
+   cursor: pointer;
+}
+
+.comment_error {
+   padding: 0 !important;
+   opacity: 1 !important;
+}
+
+.comment_image_preview {
+   position: relative;
+   width: 160px;
+   margin-top: 5px;
+   margin-left: 40px;
+}
+
+.comment_image_preview img {
+   width: 150px;
+   height: 100px;
+   object-fit: cover;
+   border-radius: 5px;
+}
+
+.comment_image_preview .small_white_circle {
+   top: -6px;
+   right: -4px;
+   transform: scale(0.6);
+}
+
 /*-----------------------------media queries ----------------*/
 
 @media (max-width: 1175px) {

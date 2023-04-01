@@ -5,10 +5,11 @@ import {Link} from "react-router-dom";
 import "./style.css";
 import {Dots, Public} from "../../svg";
 import ReactsPopup from "./ReactsPopup";
+import CreateComment from "./CreateComment";
 import {dotsIconColor, publicIconColor} from "../../utils/constants";
 
 
-const Post = ({post}) => {
+const Post = ({post, user}) => {
    const [visible, setVisible] = useState(false);
 
    const handleReactsPopup = (show) => {
@@ -101,6 +102,10 @@ const Post = ({post}) => {
                <i className="share_icon"></i>
                <span>Share</span>
             </div>
+         </div>
+         <div className="comments_wrap">
+            <div className="comments_order"></div>
+            <CreateComment user={user}/>
          </div>
       </div>
    );

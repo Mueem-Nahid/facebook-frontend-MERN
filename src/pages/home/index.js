@@ -18,7 +18,7 @@ export default function Home({user, posts, setCreatePostVisibility}) {
    }, [middle?.current?.clientHeight]);
 
    return (
-      <div className="home" style={{height: `${height+150}px`}}>
+      <div className="home" style={{height: `${height + 150}px`}}>
          <Header/>
          <LeftHome user={user}/>
          <div className="home_middle" ref={middle}>
@@ -30,7 +30,7 @@ export default function Home({user, posts, setCreatePostVisibility}) {
             <div className="posts">
                {
                   posts.length > 0 && posts.map((post) => (
-                     <Post key={post._id} post={post}/>
+                     <Post key={post._id} post={post} user={user}/>
                   ))
                }
             </div>

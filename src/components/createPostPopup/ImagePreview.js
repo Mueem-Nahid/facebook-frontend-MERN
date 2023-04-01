@@ -1,6 +1,6 @@
 import {useRef} from "react";
 
-import {maxFileSize} from "../../utils/constants";
+import {handleImages} from "../../utils/utils";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 
 const ImagePreview = ({text, setText, images, setImages, setShowPrev, setError}) => {
@@ -14,35 +14,16 @@ const ImagePreview = ({text, setText, images, setImages, setShowPrev, setError})
       setImages([]);
    }
 
-   const handleImages = (e) => {
-      let files = Array.from(e.target.files); //by default, it gives file list, converting them into an array
-      files.forEach((img) => {
-         if (img.type !== 'image/jpeg' &&
-            img.type !== 'image/png' &&
-            img.type !== 'image/webp' &&
-            img.type !== 'image/gif') {
-            setError(`${img.name} format is not supported. Select jpeg/png/webp/gif format.`);
-            files = files.filter((item) => item.name !== img.name);
-            return;
-         } else if (img.size > maxFileSize) {
-            setError(`${img.name} is too large. Max 1mb is allowed.`);
-            files = files.filter((item) => item.name !== img.name);
-            return;
-         }
-         const reader = new FileReader();
-         reader.readAsDataURL(img);
-         reader.onload = (readerEvent) => {
-            setImages((images) => [...images, readerEvent.target.result]);
-         };
-      });
-   };
+   const handlePostImages = (e) => {
+      handleImages(e, setError, setImages);
+   }
 
    return (
       <div className="overflow_a scrollbar">
          <TextareaWithEmojiPicker text={text} setText={setText} type2/>
          <div className="add_pictures_wrap">
             <input type="file" accept="image/jpeg, image/png, image/webp, image/gif" multiple hidden ref={imageInputRef}
-                   onChange={handleImages}/>
+                   onChange={handlePostImages}/>
             {
                images && images.length ?
                   <div className="add_pics_inside_1 p_0">

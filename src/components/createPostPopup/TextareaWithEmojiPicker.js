@@ -1,6 +1,7 @@
 import EmojiPicker from "emoji-picker-react";
 import {useEffect, useRef, useState} from 'react';
 
+import {emojiHandler} from "../../utils/utils";
 import {postBackground} from "../../utils/constants";
 
 const TextareaWithEmojiPicker = ({text, setText, type2, background, setBackground}) => {
@@ -15,13 +16,7 @@ const TextareaWithEmojiPicker = ({text, setText, type2, background, setBackgroun
    };
 
    const handleEmoji = ({emoji}) => {
-      const ref = textRef.current;
-      ref.focus();
-      const start = text.substring(0, ref.selectionStart);
-      const end = text.substring(ref.selectionStart);
-      const newText = start + emoji + end;
-      setText(newText);
-      setCursorPosition(start.length + emoji.length); // setting cursor at the right position after clicking an emoji
+      emojiHandler({emoji, textRef, text, setText, setCursorPosition});
    }
 
    const handleBackground = (i = null) => {
