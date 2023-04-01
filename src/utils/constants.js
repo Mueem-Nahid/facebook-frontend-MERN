@@ -3,6 +3,8 @@ const loaderColor = "#1076f2";
 
 const photoIconColor = "#45bd62";
 
+const photoIconDisabled = "#E4E6EB";
+
 const feelingIconColor = "#f7b928";
 
 const dotsIconColor = "#65676b";
@@ -52,5 +54,5 @@ const reactsArray = [
 
 export {
    searchbarColor, loaderColor, photoIconColor, feelingIconColor, dotsIconColor, postBackground, maxFileSize,
-   publicIconColor, reactsArray
+   publicIconColor, reactsArray, photoIconDisabled
 }

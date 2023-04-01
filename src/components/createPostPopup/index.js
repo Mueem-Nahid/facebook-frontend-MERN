@@ -91,7 +91,7 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
                   : <ImagePreview text={text} setText={setText} images={images} setImages={setImages}
                                   setShowPrev={setShowPrev} setError={setError}/>
             }
-            <AddToYourPost setShowPrev={setShowPrev}/>
+            <AddToYourPost setShowPrev={setShowPrev} background={background}/>
             <button className="post_submit" onClick={handlePostSubmit} disabled={loading}>
                {loading ? <PulseLoader color="#fff" size="5px"/> : "Post"}
             </button>
