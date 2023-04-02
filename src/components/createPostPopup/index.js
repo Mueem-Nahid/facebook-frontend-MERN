@@ -42,7 +42,7 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
             const preparedImages = images.map((img) => {
                return dataURItoBlob(img);
             });
-            const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/post Images`;
+            const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_POST_FOLDER_NAME}`;
             let formData = new FormData();
             formData.append("path", path);
             preparedImages.forEach((image) => {
