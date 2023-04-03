@@ -5,13 +5,14 @@ import {Routes, Route} from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
+import {getPosts} from "./apiServices/post";
 import Activate from "./pages/home/activate";
 import ResetPassword from "./pages/resetPassword";
 import {postsReducer} from "./reducers/postsReducer";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import CreatePostPopup from "./components/createPostPopup";
-import {getPosts} from "./apiServices/post";
+
 
 function App() {
    const {user} = useSelector((state) => ({...state}));
@@ -34,7 +35,6 @@ function App() {
             payload: data,
          });
       } catch (error) {
-         console.log("error", error, "user:", user)
          dispatch({
             type: "POSTS_ERROR",
             payload: error.response.data.message,
@@ -43,7 +43,7 @@ function App() {
    };
 
    useEffect(() => {
-      user  && getAllPosts();
+      user && getAllPosts();
    }, [user])
 
    return (
@@ -53,6 +53,7 @@ function App() {
          <Routes>
             <Route element={<LoggedInRoutes/>}>
                <Route path="/profile" element={<Profile/>} exact/>
+               <Route path="/profile/:username" element={<Profile/>} exact/>
                <Route path="/" element={<Home user={user} posts={posts}
                                               setCreatePostVisibility={setCreatePostVisibility}/>} exact/>
                <Route path="/activate/:token" element={<Activate/>} exact/>
