@@ -528,6 +528,11 @@ header {
    fill: var(--blue-color);
 }
 
+.active_link {
+   background: var(--light-blue-color);
+   color: var(--blue-color);
+}
+
 /* --------- responsiveness --------- */
 
 @media (max-width: 1295px) {

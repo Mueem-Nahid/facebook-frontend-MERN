@@ -1,9 +1,12 @@
 import {useSelector} from "react-redux";
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
+import "./style.css";
+import Header from "../../components/header";
 import {getProfile} from "../../apiServices/profile";
 import {profileReducer} from "../../reducers/profileReducer";
+import Cover from "../../components/profile/Cover";
 
 
 export default function Profile() {
@@ -42,6 +45,13 @@ export default function Profile() {
    }, [userName])
 
    return (
-      <div>Profile</div>
+      <div className="profile">
+         <Header page="profile"/>
+         <div className="profile_top">
+            <div className="profile_container">
+               <Cover cover={profile.cover}/>
+            </div>
+         </div>
+      </div>
    )
 }

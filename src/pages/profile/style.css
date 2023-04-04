@@ -1,0 +1,75 @@
+.profile {
+   color: var(--color-primary);
+}
+
+.profile_top {
+   margin-top: 56px;
+   box-shadow: 0 1px 2px var(--shadow-1);
+   background: var(--bg-primary);
+}
+
+.profile_container {
+   max-width: 945px;
+   margin: 0 auto;
+}
+
+.profile_cover {
+   position: relative;
+   height: 350px;
+   width: 100%;
+   border-bottom-left-radius: 8px;
+   border-bottom-right-radius: 8px;
+   background: var(--bg-secondary);
+}
+
+.cover {
+
+}
+
+.update_cover_wrapper {
+   position: absolute;
+   bottom: 1rem;
+   right: 1rem;
+}
+
+.open_cover_update {
+   background: var(--bg-primary);
+   padding: 7px 15px;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-weight: 600;
+   font-size: 14px;
+   color: var(--black-color);
+   border-radius: 10px;
+   cursor: pointer;
+}
+
+.open_cover_update i {
+   transform: scale(0.9);
+   margin-top: 4px;
+}
+
+.open_cover_menu {
+   background: var(--bg-primary);
+   position: absolute;
+   right: 0;
+   padding: 10px;
+   width: 300px;
+   border-radius: 10px;
+   box-shadow: 0 12px 28px 0 var(--shadow-1),
+   0 2px 4px 0 var(--shadow-2),
+   inset 0 0 0 var(--shadow-inset);
+   z-index: 99;
+}
+
+.open_cover_menu_item {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 10px;
+   cursor: pointer;
+   font-weight: 600;
+   font-size: 14px;
+   border-radius: 10px;
+}

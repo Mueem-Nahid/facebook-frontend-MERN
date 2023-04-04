@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {
    ArrowDown,
    Friends,
-   Gaming,
+   Gaming, Home,
    HomeActive,
    Logo,
    Market,
@@ -22,7 +22,7 @@ import SearchMenu from "./SearchMenu";
 import {searchbarColor} from "../../utils/constants";
 import useClickOutside from "../../hooks/useClickOutside";
 
-const Header = () => {
+const Header = ({page}) => {
    const {user} = useSelector((user) => ({...user}));
    const [showSearchMenu, setShowSearchMenu] = useState(false);
    const [showAllMenu, setShowAllMenu] = useState(false);
@@ -55,8 +55,10 @@ const Header = () => {
             showSearchMenu && <SearchMenu setShowSearchMenu={setShowSearchMenu}/>
          }
          <div className="header_middle">
-            <Link to="/" className="middle_icon active">
-               <HomeActive/>
+            <Link to="/" className={`middle_icon ${page === 'home' ? 'active' : ''}`}>
+               {
+                  page === "home" ? <HomeActive/> : <Home color={searchbarColor}/>
+               }
             </Link>
             <Link to="/" className="middle_icon hover1">
                <Friends color={searchbarColor}/>
@@ -73,7 +75,7 @@ const Header = () => {
             </Link>
          </div>
          <div className="header_right">
-            <Link to="/profile" className="profile_link hover1">
+            <Link to="/profile" className={`profile_link hover1 ${page === 'profile' ? 'active_link' : ''}`}>
                <img src={user?.picture} alt=""/>
                <span>{user?.first_name}</span>
             </Link>
