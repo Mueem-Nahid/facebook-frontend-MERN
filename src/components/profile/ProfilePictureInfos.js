@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProfilePictureInfos = ({profile}) => {
    return (
       <div className="profile_img_wrap">

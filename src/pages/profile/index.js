@@ -8,6 +8,7 @@ import {getProfile} from "../../apiServices/profile";
 import {profileReducer} from "../../reducers/profileReducer";
 import Cover from "../../components/profile/Cover";
 import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
+import ProfileMenu from "../../components/profile/ProfileMenu";
 
 
 export default function Profile() {
@@ -52,6 +53,7 @@ export default function Profile() {
             <div className="profile_container">
                <Cover cover={profile.cover}/>
                <ProfilePictureInfos profile={profile}/>
+               <ProfileMenu/>
             </div>
          </div>
       </div>
