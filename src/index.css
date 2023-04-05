@@ -82,6 +82,10 @@ a {
    cursor: pointer;
 }
 
+.blue_btn, .gray_btn span {
+   transform: translateY(-1px);
+}
+
 .blur {
    position: fixed;
    top: 0;
