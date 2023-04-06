@@ -293,6 +293,20 @@
    width: 20px;
 }
 
+.profile_grid {
+   display: grid;
+   grid-template-columns: 1fr 1.4fr;
+   gap: 10px;
+}
+
+.profile_left {
+
+}
+
+.profile_right {
+
+}
+
 /*-------- media query --------*/
 
 @media (max-width: 900px) {
@@ -324,5 +338,10 @@
 
    .people_you_may_know {
       display: none;
+   }
+
+   .profile_grid {
+      grid-template-columns: 1fr;
+      /*width: 95%;*/
    }
 }

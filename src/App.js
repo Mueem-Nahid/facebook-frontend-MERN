@@ -52,8 +52,9 @@ function App() {
             <CreatePostPopup user={user} setCreatePostVisibility={setCreatePostVisibility}/>}
          <Routes>
             <Route element={<LoggedInRoutes/>}>
-               <Route path="/profile" element={<Profile/>} exact/>
-               <Route path="/profile/:username" element={<Profile/>} exact/>
+               <Route path="/profile" element={<Profile setCreatePostVisibility={setCreatePostVisibility}/>} exact/>
+               <Route path="/profile/:username" element={<Profile setCreatePostVisibility={setCreatePostVisibility}/>}
+                      exact/>
                <Route path="/" element={<Home user={user} posts={posts}
                                               setCreatePostVisibility={setCreatePostVisibility}/>} exact/>
                <Route path="/activate/:token" element={<Activate/>} exact/>

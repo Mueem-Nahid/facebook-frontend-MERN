@@ -10,9 +10,10 @@ import {profileReducer} from "../../reducers/profileReducer";
 import ProfileMenu from "../../components/profile/ProfileMenu";
 import PeopleYouMayKnow from "../../components/profile/PeopleYouMayKnow";
 import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
+import CreatePost from "../../components/createPost";
 
 
-export default function Profile() {
+export default function Profile({setCreatePostVisibility}) {
    const navigate = useNavigate();
    const {username} = useParams();
    const {user} = useSelector((state) => ({...state}));
@@ -61,6 +62,12 @@ export default function Profile() {
             <div className="profile_container">
                <div className="bottom_container">
                   <PeopleYouMayKnow/>
+                  <div className="profile_grid">
+                     <div className="profile_left"></div>
+                     <div className="profile_right">
+                        <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility} profile/>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
