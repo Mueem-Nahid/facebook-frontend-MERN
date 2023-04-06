@@ -4,11 +4,12 @@ import {useNavigate, useParams} from "react-router-dom";
 
 import "./style.css";
 import Header from "../../components/header";
+import Cover from "../../components/profile/Cover";
 import {getProfile} from "../../apiServices/profile";
 import {profileReducer} from "../../reducers/profileReducer";
-import Cover from "../../components/profile/Cover";
-import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
 import ProfileMenu from "../../components/profile/ProfileMenu";
+import PeopleYouMayKnow from "../../components/profile/PeopleYouMayKnow";
+import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
 
 
 export default function Profile() {
@@ -54,6 +55,13 @@ export default function Profile() {
                <Cover cover={profile.cover}/>
                <ProfilePictureInfos profile={profile}/>
                <ProfileMenu/>
+            </div>
+         </div>
+         <div className="profile_bottom">
+            <div className="profile_container">
+               <div className="bottom_container">
+                  <PeopleYouMayKnow/>
+               </div>
             </div>
          </div>
       </div>
