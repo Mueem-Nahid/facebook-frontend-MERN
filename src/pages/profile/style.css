@@ -307,6 +307,39 @@
 
 }
 
+/* grid posts */
+
+.left_header_grid {
+   font-size: 22px;
+   font-weight: 600;
+}
+
+.flex {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.view_type_div {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr) !important;
+   font-size: 14px;
+}
+
+.view_type {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+   font-weight: 600;
+   color: var(--color-secondary);
+}
+
+.view_type_div .active {
+   color: var(--blue-color);
+}
+
 /*-------- media query --------*/
 
 @media (max-width: 900px) {

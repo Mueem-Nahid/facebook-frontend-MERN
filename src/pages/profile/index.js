@@ -1,16 +1,17 @@
 import {useSelector} from "react-redux";
-import {useEffect, useReducer, useState} from "react";
+import {useEffect, useReducer,} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 import "./style.css";
 import Header from "../../components/header";
 import Cover from "../../components/profile/Cover";
 import {getProfile} from "../../apiServices/profile";
+import CreatePost from "../../components/createPost";
+import GridPosts from "../../components/profile/GridPosts";
 import {profileReducer} from "../../reducers/profileReducer";
 import ProfileMenu from "../../components/profile/ProfileMenu";
 import PeopleYouMayKnow from "../../components/profile/PeopleYouMayKnow";
 import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
-import CreatePost from "../../components/createPost";
 
 
 export default function Profile({setCreatePostVisibility}) {
@@ -66,6 +67,7 @@ export default function Profile({setCreatePostVisibility}) {
                      <div className="profile_left"></div>
                      <div className="profile_right">
                         <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility} profile/>
+                        <GridPosts/>
                      </div>
                   </div>
                </div>
