@@ -134,7 +134,8 @@
 }
 
 .other_name {
-
+   color: var(--color-secondary);
+   font-size: 20px;
 }
 
 .profile_friend_images {
@@ -309,6 +310,15 @@
 
 /* grid posts */
 
+.no_post {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 20px;
+   color: var(--color-secondary);
+}
+
 .left_header_grid {
    font-size: 22px;
    font-weight: 600;
@@ -367,6 +377,7 @@
 
    .profile_name {
       padding-bottom: 10px;
+      flex-direction: column;
    }
 
    .people_you_may_know {

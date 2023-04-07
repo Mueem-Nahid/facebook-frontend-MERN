@@ -12,6 +12,7 @@ import {profileReducer} from "../../reducers/profileReducer";
 import ProfileMenu from "../../components/profile/ProfileMenu";
 import PeopleYouMayKnow from "../../components/profile/PeopleYouMayKnow";
 import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
+import Post from "../../components/post";
 
 
 export default function Profile({setCreatePostVisibility}) {
@@ -19,6 +20,7 @@ export default function Profile({setCreatePostVisibility}) {
    const {username} = useParams();
    const {user} = useSelector((state) => ({...state}));
    let userName = username === undefined ? user?.username : username;
+   let visitor = userName !== user?.username;
 
    const [{loading, error, profile}, dispatch] = useReducer(profileReducer, {
       loading: false,
@@ -54,8 +56,8 @@ export default function Profile({setCreatePostVisibility}) {
          <Header page="profile"/>
          <div className="profile_top">
             <div className="profile_container">
-               <Cover cover={profile.cover}/>
-               <ProfilePictureInfos profile={profile}/>
+               <Cover cover={profile?.cover} visitor={visitor}/>
+               <ProfilePictureInfos profile={profile} visitor={visitor}/>
                <ProfileMenu/>
             </div>
          </div>
@@ -66,8 +68,20 @@ export default function Profile({setCreatePostVisibility}) {
                   <div className="profile_grid">
                      <div className="profile_left"></div>
                      <div className="profile_right">
-                        <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility} profile/>
+                        {
+                           !visitor &&
+                           <CreatePost user={user} setCreatePostVisibility={setCreatePostVisibility} profile/>
+                        }
                         <GridPosts/>
+                        <div className="posts">
+                           {
+                              profile.posts && profile.posts.length !== 0 ?
+                                 profile.posts.map((post) => (
+                                    <Post key={post._id} post={post} user={user}/>
+                                 )) :
+                                 <div className="no_post">No post available</div>
+                           }
+                        </div>
                      </div>
                   </div>
                </div>
