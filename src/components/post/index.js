@@ -10,7 +10,7 @@ import CreateComment from "./CreateComment";
 import {dotsIconColor, publicIconColor} from "../../utils/constants";
 
 
-const Post = ({post, user}) => {
+const Post = ({post, user, profile}) => {
    const [visible, setVisible] = useState(false);
    const [showMenu, setShowMenu] = useState(false);
 
@@ -21,7 +21,7 @@ const Post = ({post, user}) => {
    }
 
    return (
-      <div className="post">
+      <div className="post" style={{width: `${profile && "100%"}`}}>
          <div className="post_header">
             <Link to={`/profile/${post?.user?.username}`} className="post_header_left ">
                <img src={post?.user?.picture} alt=""/>
