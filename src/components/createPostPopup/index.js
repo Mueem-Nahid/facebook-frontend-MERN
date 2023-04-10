@@ -61,7 +61,7 @@ const CreatePostPopup = ({user, setCreatePostVisibility}) => {
 
    return (
       <div className="blur">
-         <div className="postBox" ref={createPostModal}>
+         <div className="post_box" ref={createPostModal}>
             {
                error && <PostError error={error} setError={setError}/>
             }
