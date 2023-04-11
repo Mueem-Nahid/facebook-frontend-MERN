@@ -50,7 +50,7 @@ const ProfilePictureModal = () => {
             }
             <div className="old_pictures_wrap"></div>
          </div>
-         {image.length !== 0 && <UpdateProfilePicture setImage={setImage}/>}
+         {image.length !== 0 && <UpdateProfilePicture image={image} setImage={setImage}/>}
       </div>
    );
 };

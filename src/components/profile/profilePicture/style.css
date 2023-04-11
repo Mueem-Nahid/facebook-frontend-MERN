@@ -1,5 +1,5 @@
 .picture_box {
-   width: 700px;
+   width: 700px !important;
    height: 62vh;
 }
 
@@ -33,13 +33,14 @@
 }
 
 .update_image {
-   width: 700px;
-   height: 72vh;
+   width: 700px !important;
+   height: 95vh;
    /* height: 800px */
 }
 
 .update_image_desc {
-   padding: 15px;
+   padding: 10px;
+   /* padding: 15px; */
 }
 
 .textarea_blue {
@@ -69,9 +70,108 @@
 }
 
 .update_center {
-
+   position: relative;
+   /*height: 400px;*/
+   height: 390px;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .cropper {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   height: 300px;
+   width: 100%;
+}
 
+.cropper img {
+   width: 100%;
+   object-fit: cover;
+}
+
+.update_image .reactEasyCrop_CropArea {
+   width: 300px !important;
+   height: 300px !important;
+   color: rgba(255, 255, 255, 0.5);
+}
+
+.slider {
+   position: absolute;
+   bottom: -20px;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+}
+
+/* to select the specific input */
+.slider input[type="range"] {
+   -webkit-appearance: none;
+   width: 55%;
+   height: 4px;
+   background: var(--divider);
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   width: 20px;
+   height: 20px;
+   outline: none;
+   border-radius: 50%;
+   background: var(--bg-primary);
+   box-shadow: 0 2px 2px var(--shadow-1),
+   0 2px 2px 0 var(--shadow-2),
+   inset 0 0 0 1px var(--shadow-inset);
+   border: 1px solid var(--bg-third);
+}
+
+.slider_circle {
+   width: 36px;
+   height: 36px;
+   display: grid;
+   place-items: center;
+   border-radius: 50%;
+   cursor: pointer;
+}
+
+.flex_btn_section {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 15px;
+   margin-top: 2rem;
+}
+
+.flex_photo_privacy {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   padding: 15px;
+   color: var(--color-secondary);
+   font-size: 17px;
+   border-bottom: 1px solid var(--bg-third);
+}
+
+.update_submit_wrap {
+   position: absolute;
+   bottom: 1rem;
+   right: 1rem;
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.update_submit_wrap button {
+   width: 110px;
+}
+
+.blue_link {
+   color: var(--blue-color);
+   font-weight: 600;
+   font-size: 15px;
+   cursor: pointer;
 }
