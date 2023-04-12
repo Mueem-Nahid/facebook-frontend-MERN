@@ -89,10 +89,10 @@
 
 .cropper img {
    width: 100%;
-   object-fit: cover;
+   object-fit: contain;
 }
 
-.update_image .reactEasyCrop_CropArea {
+.update_image .reactEasyCrop_CropAreaGrid {
    width: 300px !important;
    height: 300px !important;
    color: rgba(255, 255, 255, 0.5);
@@ -166,7 +166,7 @@
 }
 
 .update_submit_wrap button {
-   width: 110px;
+   width: 110px !important;
 }
 
 .blue_link {

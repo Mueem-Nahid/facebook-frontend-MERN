@@ -1,14 +1,18 @@
-import {useCallback, useRef, useState} from 'react';
 import Cropper from "react-easy-crop";
+import {useCallback, useRef, useState} from 'react';
+
+import getCroppedImage from "../../../utils/getCroppedImage";
 
 const UpdateProfilePicture = ({image, setImage}) => {
    const [description, setDescription] = useState("");
    const [crop, setCrop] = useState({x: 0, y: 0});
    const [zoom, setZoom] = useState(1);
+   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
    const sliderRef = useRef(null);
 
    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
       // console.log(croppedArea, croppedAreaPixels)
+      setCroppedAreaPixels(croppedAreaPixels);
    }, []);
 
    const handleZoom = (type) => {
@@ -24,7 +28,22 @@ const UpdateProfilePicture = ({image, setImage}) => {
 
    const handleDesc = (e) => {
       setDescription(e.target.value);
-   }
+   };
+
+   const getCroppedImageHandler = useCallback(async (showCroppedImage = false) => {
+      try {
+         const img = await getCroppedImage(image, croppedAreaPixels);
+         if (showCroppedImage) {
+            setZoom(1);
+            setCrop({x: 0, y: 0});
+            setImage(img);
+         } else {
+            return img;
+         }
+      } catch (error) {
+         console.log("Error getting cropped image: ", error)
+      }
+   }, [croppedAreaPixels]);
 
    return (
       <div className="post_box update_image">
@@ -64,7 +83,7 @@ const UpdateProfilePicture = ({image, setImage}) => {
             </div>
          </div>
          <div className="flex_btn_section">
-            <div className="gray_btn">
+            <div className="gray_btn" onClick={() => getCroppedImageHandler(true)}>
                <i className="crop_icon"></i>Crop photo
             </div>
             <div className="gray_btn">
@@ -77,7 +96,7 @@ const UpdateProfilePicture = ({image, setImage}) => {
          </div>
          <div className="update_submit_wrap">
             <div className="blue_link">Cancel</div>
-            <button className="blue_btn">Save</button>
+            <button className="blue_btn" onClick={() => getCroppedImageHandler()}>Save</button>
          </div>
       </div>
    );
