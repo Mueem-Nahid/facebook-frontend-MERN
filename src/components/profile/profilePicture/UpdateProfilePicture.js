@@ -3,7 +3,7 @@ import {useCallback, useRef, useState} from 'react';
 
 import getCroppedImage from "../../../utils/getCroppedImage";
 
-const UpdateProfilePicture = ({image, setImage}) => {
+const UpdateProfilePicture = ({image, setImage, error, setError}) => {
    const [description, setDescription] = useState("");
    const [crop, setCrop] = useState({x: 0, y: 0});
    const [zoom, setZoom] = useState(1);
@@ -24,7 +24,7 @@ const UpdateProfilePicture = ({image, setImage}) => {
          sliderRef.current.stepDown();
          setZoom(sliderRef.current.value);
       }
-   }
+   };
 
    const handleDesc = (e) => {
       setDescription(e.target.value);
@@ -44,6 +44,15 @@ const UpdateProfilePicture = ({image, setImage}) => {
          console.log("Error getting cropped image: ", error)
       }
    }, [croppedAreaPixels]);
+
+   const updateProfilePictureHandler = async () => {
+      try {
+         let img = await getCroppedImageHandler()
+         console.log(img)
+      } catch (error) {
+         setError(error.response.data.message);
+      }
+   }
 
    return (
       <div className="post_box update_image">
@@ -96,7 +105,7 @@ const UpdateProfilePicture = ({image, setImage}) => {
          </div>
          <div className="update_submit_wrap">
             <div className="blue_link">Cancel</div>
-            <button className="blue_btn" onClick={() => getCroppedImageHandler()}>Save</button>
+            <button className="blue_btn" onClick={updateProfilePictureHandler}>Save</button>
          </div>
       </div>
    );
