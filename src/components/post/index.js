@@ -30,10 +30,10 @@ const Post = ({post, user, profile}) => {
                      {post?.user?.first_name} {post?.user?.last_name}
                      <div className="updated_picture">
                         {post?.type === "profilePicture" &&
-                           `upated ${post?.user?.gender === "male" ? "his" : "her"} profile picture`
+                           `updated ${post?.user?.gender === "male" ? "his" : "her"} profile picture`
                         }
-                        {post?.type === "profilePicture" &&
-                           `upated ${post?.user?.gender === "male" ? "his" : "her"} cover picture`
+                        {post?.type === "coverPhoto" &&
+                           `updated ${post?.user?.gender === "male" ? "his" : "her"} cover photo`
                         }
                      </div>
                   </div>

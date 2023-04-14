@@ -3,7 +3,7 @@ import {useState} from "react";
 import ProfilePictureModal from "./profilePicture";
 
 const ProfilePictureInfos = ({profile, visitor}) => {
-   const [show, setShow] = useState(true);
+   const [show, setShow] = useState(false);
 
    return (
       <div className="profile_img_wrap">

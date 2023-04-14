@@ -1,9 +1,14 @@
 import Cropper from "react-easy-crop";
+import {useSelector} from "react-redux";
 import {useCallback, useRef, useState} from 'react';
 
 import getCroppedImage from "../../../utils/getCroppedImage";
+import {createPost, uploadImages} from "../../../apiServices/post";
+import {updateProfilePicture} from "../../../apiServices/profile";
+
 
 const UpdateProfilePicture = ({image, setImage, error, setError}) => {
+   const {user} = useSelector((state) => ({...state}));
    const [description, setDescription] = useState("");
    const [crop, setCrop] = useState({x: 0, y: 0});
    const [zoom, setZoom] = useState(1);
@@ -48,8 +53,16 @@ const UpdateProfilePicture = ({image, setImage, error, setError}) => {
    const updateProfilePictureHandler = async () => {
       try {
          let img = await getCroppedImageHandler()
-         console.log(img)
+         let blob = await fetch(img).then((b) => b.blob());
+         const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`;
+         let formData = new FormData();
+         formData.append("file", blob);
+         formData.append("path", path);
+         const data = await uploadImages(formData, path, user.token);
+         await updateProfilePicture(data[0].url, user.token);
+         await createPost("profilePicture", null, description, data, user.id, user.token);
       } catch (error) {
+         console.log(error)
          setError(error.response.data.message);
       }
    }
