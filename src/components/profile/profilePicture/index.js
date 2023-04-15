@@ -5,7 +5,7 @@ import {handleImages} from "../../../utils/utils";
 import UpdateProfilePicture from "./UpdateProfilePicture";
 
 
-const ProfilePictureModal = () => {
+const ProfilePictureModal = ({setShow, profileRef}) => {
    const refInput = useRef(null);
    const [image, setImage] = useState([]);
    const [error, setError] = useState("");
@@ -24,7 +24,7 @@ const ProfilePictureModal = () => {
                 accept="image/jpeg, image/png, image/webp, image/gif"/>
          <div className="post_box picture_box">
             <div className="box_header">
-               <div className="small_circle">
+               <div className="small_circle" onClick={() => setShow(false)}>
                   <i className="exit_icon"></i>
                </div>
                <span>Update profile picture</span>
@@ -50,7 +50,8 @@ const ProfilePictureModal = () => {
             }
             <div className="old_pictures_wrap"></div>
          </div>
-         {image.length !== 0 && <UpdateProfilePicture image={image} setImage={setImage} error={error} setError={setError}/>}
+         {image.length !== 0 &&
+            <UpdateProfilePicture image={image} setImage={setImage} error={error} setError={setError} setShow={setShow} profileRef={profileRef}/>}
       </div>
    );
 };

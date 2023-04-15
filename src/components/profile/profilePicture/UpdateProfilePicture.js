@@ -1,22 +1,25 @@
+import Cookies from "js-cookie";
 import Cropper from "react-easy-crop";
-import {useSelector} from "react-redux";
+import {PulseLoader} from "react-spinners";
+import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useRef, useState} from 'react';
 
 import getCroppedImage from "../../../utils/getCroppedImage";
-import {createPost, uploadImages} from "../../../apiServices/post";
 import {updateProfilePicture} from "../../../apiServices/profile";
+import {createPost, uploadImages} from "../../../apiServices/post";
 
 
-const UpdateProfilePicture = ({image, setImage, error, setError}) => {
+const UpdateProfilePicture = ({image, setImage, error, setError, setShow, profileRef}) => {
    const {user} = useSelector((state) => ({...state}));
    const [description, setDescription] = useState("");
    const [crop, setCrop] = useState({x: 0, y: 0});
    const [zoom, setZoom] = useState(1);
    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+   const [loading, setLoading] = useState(false);
    const sliderRef = useRef(null);
+   const dispatch = useDispatch();
 
    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-      // console.log(croppedArea, croppedAreaPixels)
       setCroppedAreaPixels(croppedAreaPixels);
    }, []);
 
@@ -35,6 +38,10 @@ const UpdateProfilePicture = ({image, setImage, error, setError}) => {
       setDescription(e.target.value);
    };
 
+   const handleImage = () => {
+      setImage([]);
+   }
+
    const getCroppedImageHandler = useCallback(async (showCroppedImage = false) => {
       try {
          const img = await getCroppedImage(image, croppedAreaPixels);
@@ -46,23 +53,31 @@ const UpdateProfilePicture = ({image, setImage, error, setError}) => {
             return img;
          }
       } catch (error) {
+         setError(error);
          console.log("Error getting cropped image: ", error)
       }
    }, [croppedAreaPixels]);
 
    const updateProfilePictureHandler = async () => {
       try {
+         setLoading(true);
          let img = await getCroppedImageHandler()
          let blob = await fetch(img).then((b) => b.blob());
          const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`;
          let formData = new FormData();
          formData.append("file", blob);
          formData.append("path", path);
-         const data = await uploadImages(formData, path, user.token);
-         await updateProfilePicture(data[0].url, user.token);
-         await createPost("profilePicture", null, description, data, user.id, user.token);
+         const uploadImagesRes = await uploadImages(formData, path, user.token);
+         const {data} = await updateProfilePicture(uploadImagesRes[0].url, user.token);
+         await createPost("profilePicture", null, description, uploadImagesRes, user.id, user.token);
+         profileRef.current.style.backgroundImage = `url(${data.picture})`;
+         Cookies.set("user", JSON.stringify({...user, picture: data?.picture}));
+         dispatch({type: "UPDATE_PICTURE", payload: data?.picture});
+         setLoading(false);
+         setShow(false);
+         handleImage();
       } catch (error) {
-         console.log(error)
+         setLoading(false);
          setError(error.response.data.message);
       }
    }
@@ -70,7 +85,7 @@ const UpdateProfilePicture = ({image, setImage, error, setError}) => {
    return (
       <div className="post_box update_image">
          <div className="box_header">
-            <div className="small_circle" onClick={() => setImage([])}>
+            <div className="small_circle" onClick={handleImage}>
                <i className="exit_icon"></i>
             </div>
             <span>Update profile picture</span>
@@ -117,8 +132,10 @@ const UpdateProfilePicture = ({image, setImage, error, setError}) => {
             Your profile picture is public
          </div>
          <div className="update_submit_wrap">
-            <div className="blue_link">Cancel</div>
-            <button className="blue_btn" onClick={updateProfilePictureHandler}>Save</button>
+            <div className="blue_link" onClick={handleImage}>Cancel</div>
+            <button className="blue_btn" disabled={loading} onClick={updateProfilePictureHandler}>
+               {loading ? <PulseLoader color="#fff" size="5px"/> : "Save"}
+            </button>
          </div>
       </div>
    );

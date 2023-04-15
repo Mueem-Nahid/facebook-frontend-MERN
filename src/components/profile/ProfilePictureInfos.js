@@ -1,19 +1,20 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 import ProfilePictureModal from "./profilePicture";
 
 const ProfilePictureInfos = ({profile, visitor}) => {
    const [show, setShow] = useState(false);
+   const profileRef = useRef(null);
 
    return (
       <div className="profile_img_wrap">
-         {show && <ProfilePictureModal/>}
+         {show && <ProfilePictureModal setShow={setShow} profileRef={profileRef}/>}
          <div className="profile_w_left">
             <div className="profile_w_img">
-               <div className="profile_w_bg"
+               <div className="profile_w_bg" ref={profileRef}
                     style={{backgroundSize: "cover", backgroundImage: `url(${profile?.picture})`}}>
                </div>
-               {!visitor && <div className="profile_circle hover1">
+               {!visitor && <div className="profile_circle hover1" onClick={() => setShow(true)}>
                   <i className="camera_filled_icon"></i>
                </div>}
             </div>
