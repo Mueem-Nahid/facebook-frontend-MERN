@@ -5,7 +5,7 @@ import {handleImages} from "../../../utils/utils";
 import UpdateProfilePicture from "./UpdateProfilePicture";
 
 
-const ProfilePictureModal = ({setShow, profileRef}) => {
+const ProfilePictureModal = ({user, profilePictures, setShow, profileRef}) => {
    const refInput = useRef(null);
    const [image, setImage] = useState([]);
    const [error, setError] = useState("");
@@ -16,6 +16,10 @@ const ProfilePictureModal = ({setShow, profileRef}) => {
 
    const handleImageInput = (e) => {
       handleImages(e, setError, setImage)
+   }
+
+   const handleImage = (photo) => {
+      setImage(photo.secure_url);
    }
 
    return (
@@ -48,10 +52,32 @@ const ProfilePictureModal = ({setShow, profileRef}) => {
                   <button className="blue_btn" onClick={() => setError("")}>Try again</button>
                </div>
             }
-            <div className="old_pictures_wrap"></div>
+            <div className="old_pictures_wrap scrollbar">
+               <h4>Your profile pictures</h4>
+               <div className="old_pictures">
+                  {
+                     profilePictures?.filter(
+                        (img) => img.folder === `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`
+                     ).map((photo) => (
+                        <img src={photo.secure_url} key={photo.public_id} alt="" onClick={() => handleImage(photo)}/>
+                     ))
+                  }
+               </div>
+               <h4>Other pictures</h4>
+               <div className="old_pictures">
+                  {
+                     profilePictures?.filter(
+                        (img) => img.folder !== `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`
+                     ).map((photo) => (
+                        <img src={photo.secure_url} key={photo.public_id} alt="" onClick={() => handleImage(photo)}/>
+                     ))
+                  }
+               </div>
+            </div>
          </div>
          {image.length !== 0 &&
-            <UpdateProfilePicture image={image} setImage={setImage} error={error} setError={setError} setShow={setShow} profileRef={profileRef}/>}
+            <UpdateProfilePicture image={image} setImage={setImage} error={error} setError={setError} setShow={setShow}
+                                  profileRef={profileRef}/>}
       </div>
    );
 };

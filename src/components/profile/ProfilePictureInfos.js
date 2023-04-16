@@ -2,13 +2,14 @@ import {useRef, useState} from "react";
 
 import ProfilePictureModal from "./profilePicture";
 
-const ProfilePictureInfos = ({profile, visitor}) => {
+const ProfilePictureInfos = ({user, profile, visitor, profilePictures}) => {
    const [show, setShow] = useState(false);
    const profileRef = useRef(null);
 
    return (
       <div className="profile_img_wrap">
-         {show && <ProfilePictureModal setShow={setShow} profileRef={profileRef}/>}
+         {show && <ProfilePictureModal user={user} profilePictures={profilePictures} setShow={setShow}
+                                       profileRef={profileRef}/>}
          <div className="profile_w_left">
             <div className="profile_w_img">
                <div className="profile_w_bg" ref={profileRef}

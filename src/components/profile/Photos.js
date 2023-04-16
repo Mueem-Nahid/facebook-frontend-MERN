@@ -1,40 +1,4 @@
-import {useEffect, useReducer} from 'react';
-
-import {getPhotos} from "../../apiServices/profile";
-import {photosReducer} from "../../reducers/photosReducer";
-
-const Photos = ({username, token}) => {
-   const path = `${username}/*`;
-   const max = 30;
-   const sort = "desc";
-
-   const [{loading, error, photos}, dispatch] = useReducer(photosReducer, {
-      loading: false,
-      photos: {},
-      error: "",
-   });
-
-   const fetchUserPhotos = async () => {
-      try {
-         dispatch({
-            type: "PHOTOS_REQUEST",
-         });
-         const {data} = await getPhotos({path, max, sort}, token);
-         dispatch({
-            type: "PHOTOS_SUCCESS",
-            payload: data,
-         });
-      } catch (error) {
-         dispatch({
-            type: "PHOTOS_ERROR",
-            payload: error.response.data.message,
-         })
-      }
-   };
-
-   useEffect(() => {
-      fetchUserPhotos();
-   }, [username]);
+const Photos = ({photos}) => {
 
    return (
       <div className="profile_card">

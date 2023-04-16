@@ -29,7 +29,35 @@
 }
 
 .old_pictures_wrap {
+   padding: 15px;
+   overflow-y: auto;
+   height: 330px;
+}
 
+.old_pictures_wrap h4 {
+   padding: 10px 0;
+}
+
+.old_pictures {
+   display: flex;
+   flex-wrap: wrap;
+   padding: 10px 0;
+   gap: 10px;
+}
+
+.old_pictures img {
+   width: 100px;
+   height: 100px;
+   border-radius: 10px;
+   cursor: pointer;
+}
+
+.old_pictures img:hover {
+   filter: brightness(110%);
+}
+
+.old_pictures:first-of-type {
+   border-bottom: 1px solid var(--bg-third);
 }
 
 .update_image {

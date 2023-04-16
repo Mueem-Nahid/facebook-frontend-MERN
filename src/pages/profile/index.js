@@ -1,28 +1,32 @@
 import {useSelector} from "react-redux";
-import {useEffect, useReducer,} from "react";
+import {useEffect, useReducer, useState,} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 
 import "./style.css";
+import Post from "../../components/post";
 import Header from "../../components/header";
 import Cover from "../../components/profile/Cover";
-import {getProfile} from "../../apiServices/profile";
+import Photos from "../../components/profile/Photos";
 import CreatePost from "../../components/createPost";
+import Friends from "../../components/profile/Friends";
 import GridPosts from "../../components/profile/GridPosts";
 import {profileReducer} from "../../reducers/profileReducer";
 import ProfileMenu from "../../components/profile/ProfileMenu";
+import {getPhotos, getProfile} from "../../apiServices/profile";
 import PeopleYouMayKnow from "../../components/profile/PeopleYouMayKnow";
 import ProfilePictureInfos from "../../components/profile/ProfilePictureInfos";
-import Post from "../../components/post";
-import Photos from "../../components/profile/Photos";
-import Friends from "../../components/profile/Friends";
-
 
 export default function Profile({setCreatePostVisibility}) {
+   const [photos, setPhotos] = useState({});
    const navigate = useNavigate();
    const {username} = useParams();
    const {user} = useSelector((state) => ({...state}));
    let userName = username === undefined ? user?.username : username;
    let visitor = userName !== user?.username;
+
+   const path = `${userName}/*`;
+   const max = 30;
+   const sort = "desc";
 
    const [{loading, error, profile}, dispatch] = useReducer(profileReducer, {
       loading: false,
@@ -40,6 +44,12 @@ export default function Profile({setCreatePostVisibility}) {
             type: "PROFILE_SUCCESS",
             payload: data,
          });
+         try {
+            const images = await getPhotos({path, max, sort}, user.token);
+            setPhotos(images?.data);
+         } catch (error) {
+            console.log(error.response.data.message);
+         }
       } catch (error) {
          navigate("/profile");
          dispatch({
@@ -59,7 +69,7 @@ export default function Profile({setCreatePostVisibility}) {
          <div className="profile_top">
             <div className="profile_container">
                <Cover cover={profile?.cover} visitor={visitor}/>
-               <ProfilePictureInfos profile={profile} visitor={visitor}/>
+               <ProfilePictureInfos user={user} profile={profile} visitor={visitor} profilePictures={photos.resources}/>
                <ProfileMenu/>
             </div>
          </div>
@@ -69,7 +79,7 @@ export default function Profile({setCreatePostVisibility}) {
                   <PeopleYouMayKnow/>
                   <div className="profile_grid">
                      <div className="profile_left">
-                        <Photos username={userName} token={user.token}/>
+                        <Photos username={userName} token={user.token} photos={photos}/>
                         <Friends friends={profile?.friends}/>
 
                         {/*TODO: use a common component*/}
