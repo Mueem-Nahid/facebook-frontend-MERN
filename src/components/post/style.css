@@ -525,6 +525,35 @@
    margin: 5px 0;
 }
 
+.post_profile_wrap {
+   position: relative;
+   height: 500px;
+   display: grid;
+   place-items: center;
+}
+
+.post_updated_bg {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 300px;
+   width: 100%;
+   background: var(--bg-third);
+}
+
+.post_updated_picture {
+   z-index: 1;
+   width: 420px;
+   height: 420px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 3px solid var(--bg-primary);
+}
+
+.post_cover_wrap {
+
+}
+
 /*-----------------------------media queries ----------------*/
 
 @media (max-width: 1175px) {
