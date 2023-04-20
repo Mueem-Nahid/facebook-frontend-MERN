@@ -1,7 +1,7 @@
 import EmojiPicker from "emoji-picker-react";
 import {useEffect, useRef, useState} from "react";
 
-import {emojiHandler, handleImages} from "../../utils/utils";
+import {emojiHandler, handleImages, handleOpenInput} from "../../utils/utils";
 
 const CreateComment = ({user}) => {
    const textRef = useRef(null);
@@ -18,10 +18,6 @@ const CreateComment = ({user}) => {
 
    const handleEmoji = ({emoji}) => {
       emojiHandler({emoji, textRef, text, setText, setCursorPosition});
-   };
-
-   const handleOpenInput = () => {
-      imageInputRef.current.click();
    };
 
    const handleCommentImage = (e) => {
@@ -63,7 +59,7 @@ const CreateComment = ({user}) => {
                </div>
                {
                   commentImage.length === 0 &&
-                  <div className="comment_circle_icon hover2" onClick={handleOpenInput}>
+                  <div className="comment_circle_icon hover2" onClick={() => handleOpenInput(imageInputRef)}>
                      <i className="camera_icon"></i>
                   </div>
                }

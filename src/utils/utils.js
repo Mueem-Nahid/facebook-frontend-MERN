@@ -1,5 +1,9 @@
 import {maxFileSize} from "./constants";
 
+export const handleOpenInput = (refInput) => {
+   refInput.current.click();
+};
+
 export const emojiHandler = ({emoji, textRef, text, setText, setCursorPosition}) => {
    const ref = textRef.current;
    ref.focus();

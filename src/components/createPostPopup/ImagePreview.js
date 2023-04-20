@@ -1,14 +1,10 @@
 import {useRef} from "react";
 
-import {handleImages} from "../../utils/utils";
+import {handleImages, handleOpenInput} from "../../utils/utils";
 import TextareaWithEmojiPicker from "./TextareaWithEmojiPicker";
 
 const ImagePreview = ({text, setText, images, setImages, setShowPrev, setError}) => {
    const imageInputRef = useRef(null);
-
-   const handleOpenInput = () => {
-      imageInputRef.current.click();
-   };
 
    const handleRemoveAllImages = () => {
       setImages([]);
@@ -32,7 +28,7 @@ const ImagePreview = ({text, setText, images, setImages, setShowPrev, setError})
                            <i className="edit_icon"></i>
                            <span>Edit</span>
                         </button>
-                        <button className="hover1" onClick={handleOpenInput}>
+                        <button className="hover1" onClick={() => handleOpenInput(imageInputRef)}>
                            <i className="addPhoto_icon"></i>
                            <span>Add</span>
                         </button>
@@ -61,7 +57,7 @@ const ImagePreview = ({text, setText, images, setImages, setShowPrev, setError})
                      <div className="small_white_circle" onClick={() => setShowPrev(false)}>
                         <i className="exit_icon"></i>
                      </div>
-                     <div className="add_col" onClick={handleOpenInput}>
+                     <div className="add_col" onClick={() => handleOpenInput(imageInputRef)}>
                         <div className="add_circle">
                            <i className="addPhoto_icon"></i>
                         </div>

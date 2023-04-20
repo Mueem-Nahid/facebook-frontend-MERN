@@ -1,18 +1,14 @@
 import {useRef, useState} from "react";
 
 import "./style.css";
-import {handleImages} from "../../../utils/utils";
 import UpdateProfilePicture from "./UpdateProfilePicture";
+import {handleImages, handleOpenInput} from "../../../utils/utils";
 
 
 const ProfilePictureModal = ({user, profilePictures, setShow, profileRef}) => {
    const refInput = useRef(null);
    const [image, setImage] = useState([]);
    const [error, setError] = useState("");
-
-   const handleOpenInput = () => {
-      refInput.current.click();
-   };
 
    const handleImageInput = (e) => {
       handleImages(e, setError, setImage)
@@ -35,7 +31,7 @@ const ProfilePictureModal = ({user, profilePictures, setShow, profileRef}) => {
             </div>
             <div className="update_profile_picture_wrap">
                <div className="update_picture_buttons">
-                  <button className="light_blue_btn" onClick={handleOpenInput}>
+                  <button className="light_blue_btn" onClick={() => handleOpenInput(refInput)}>
                      <i className="plus_icon filter_blue"></i>
                      Upload photo
                   </button>
