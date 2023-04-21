@@ -1,23 +1,52 @@
-import {useRef, useState} from "react";
+import Cropper from "react-easy-crop";
+import {useCallback, useEffect, useRef, useState} from "react";
 
 import useClickOutside from "../../hooks/useClickOutside";
 import {handleImages, handleOpenInput} from "../../utils/utils";
+
 
 const Cover = ({cover, visitor}) => {
    const [showCoverMenu, setShowCoverMenu] = useState(false);
    const [coverPicture, setCoverPicture] = useState([]);
    const [error, setError] = useState("");
+   const [crop, setCrop] = useState({x: 0, y: 0});
+   const [zoom, setZoom] = useState(1);
+   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+   const [coverImageWidth, setCoverImageWidth] = useState(0);
+
    const menuRef = useRef(null);
    const refInput = useRef(null);
+   const coverRef = useRef(null);
 
    useClickOutside(menuRef, () => setShowCoverMenu(false));
 
+   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+      setCroppedAreaPixels(croppedAreaPixels);
+   }, []);
+
    const handleImageInput = (e) => {
       handleImages(e, setError, setCoverPicture)
-   }
+   };
+
+   useEffect(() => {
+      setCoverImageWidth(coverRef.current.clientWidth);
+   }, [window.innerWidth]);
 
    return (
-      <div className="profile_cover">
+      <div className="profile_cover" ref={coverRef}>
+         {
+            coverPicture.length !== 0 &&
+            <div className="save_changes_cover">
+               <div className="save_changes_left">
+                  <i className="public_icon"></i>
+                  Your cover photo is public
+               </div>
+               <div className="save_changes_right">
+                  <button className="blue_btn opacity_btn">Cancel</button>
+                  <button className="blue_btn">Save changes</button>
+               </div>
+            </div>
+         }
          <input type="file" ref={refInput} hidden accept="image/jpeg, image/png, image/webp, image/gif"
                 onChange={handleImageInput}/>
          {
@@ -25,6 +54,21 @@ const Cover = ({cover, visitor}) => {
             <div className="post_error comment_error">
                <div className="post_error_text">{error}</div>
                <button className="blue_btn" onClick={() => setError("")}>Try again</button>
+            </div>
+         }
+         {coverPicture &&
+            <div className="cover_cropper">
+               <Cropper
+                  image={coverPicture}
+                  crop={crop}
+                  zoom={zoom}
+                  aspect={coverImageWidth / 350}
+                  onCropChange={setCrop}
+                  onCropComplete={onCropComplete}
+                  onZoomChange={setZoom}
+                  showGrid={true}
+                  objectFit="horizontal-cover"
+               />
             </div>
          }
          {

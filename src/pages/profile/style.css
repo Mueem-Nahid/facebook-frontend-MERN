@@ -26,6 +26,65 @@
 
 }
 
+.cover_cropper {
+   height: 100%;
+}
+
+.cover_cropper img {
+   object-fit: cover;
+   width: 100%;
+}
+
+.cover_cropper .reactEasyCrop_Container {
+   border-bottom-right-radius: 8px;
+   border-bottom-left-radius: 8px;
+}
+
+.save_changes_cover {
+   z-index: 9999999999;
+   position: fixed;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   padding: 10px 15px;
+   background: rgba(0, 0, 0, 0.7);
+   font-weight: 500;
+   font-size: 14px;
+   color: var(--color-primary);
+}
+
+.save_changes_left {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   color: var(--bg-primary);
+}
+
+.save_changes_left i {
+   filter: invert(100%);
+}
+
+.save_changes_right {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.save_changes_right button {
+   padding: 10px;
+}
+
+.save_changes_right button:first-of-type {
+   width: 100px;
+   background: var(--black-olive-color);
+}
+
+.save_changes_right button:last-of-type {
+   width: 160px;
+}
+
 .update_cover_wrapper {
    position: absolute;
    bottom: 1rem;
@@ -91,7 +150,7 @@
 
 .profile_w_img {
    position: relative;
-   z-index: 9999;
+   /* z-index: 9999; */
 }
 
 .profile_w_bg {
