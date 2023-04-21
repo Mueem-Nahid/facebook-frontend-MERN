@@ -14,7 +14,17 @@ export default function Home({user, posts, setCreatePostVisibility}) {
    const [height, setHeight] = useState();
 
    useEffect(() => {
-      setHeight(middle.current.clientHeight); // get the height of an element
+      // get the height of an element
+      const handleResize = () => {
+         setHeight(middle.current.clientHeight);
+      };
+
+      window.addEventListener("resize", handleResize);
+      handleResize();
+
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
    }, [middle?.current?.clientHeight]);
 
    return (
