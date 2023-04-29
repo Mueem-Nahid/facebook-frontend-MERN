@@ -29,3 +29,13 @@ export const updateProfilePicture = async (url, token) => {
       });
    return response.data;
 };
+
+export const updateCoverPicture = async (url, token) => {
+   const response = await API.patch('/updateCover',
+      {url}, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
+   return response.data;
+};

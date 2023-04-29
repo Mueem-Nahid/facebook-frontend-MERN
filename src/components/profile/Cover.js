@@ -1,11 +1,16 @@
 import Cropper from "react-easy-crop";
+import {PulseLoader} from "react-spinners";
 import {useCallback, useEffect, useRef, useState} from "react";
 
 import useClickOutside from "../../hooks/useClickOutside";
+import {updateCoverPicture} from "../../apiServices/profile";
 import {handleImages, handleOpenInput} from "../../utils/utils";
+import {createPost, uploadImages} from "../../apiServices/post";
+import useImageCropperHandler from "../../hooks/useImageCropperHandler";
 
 
-const Cover = ({cover, visitor}) => {
+const Cover = ({user, cover, visitor}) => {
+   const [coverImage, setCoverImage] = useState(cover);
    const [showCoverMenu, setShowCoverMenu] = useState(false);
    const [coverPicture, setCoverPicture] = useState([]);
    const [error, setError] = useState("");
@@ -13,12 +18,15 @@ const Cover = ({cover, visitor}) => {
    const [zoom, setZoom] = useState(1);
    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
    const [coverImageWidth, setCoverImageWidth] = useState(0);
+   const [loading, setLoading] = useState(false);
 
    const menuRef = useRef(null);
    const refInput = useRef(null);
    const coverRef = useRef(null);
-
+   const coverPictureRef = useRef(null);
    useClickOutside(menuRef, () => setShowCoverMenu(false));
+
+   const handleImageCrop = useImageCropperHandler(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverImage, setError);
 
    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
       setCroppedAreaPixels(croppedAreaPixels);
@@ -32,6 +40,29 @@ const Cover = ({cover, visitor}) => {
       setCoverImageWidth(coverRef.current.clientWidth);
    }, [window.innerWidth]);
 
+   const updateCoverHandler = async () => {
+      try {
+         setLoading(true);
+         let img = await handleImageCrop();
+         let blob = await fetch(img).then((b) => b.blob());
+         const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_COVER_PICTURE_FOLDER_NAME}`;
+         let formData = new FormData();
+         formData.append("file", blob);
+         formData.append("path", path);
+         const uploadImagesRes = await uploadImages(formData, path, user.token);
+         console.log(uploadImagesRes)
+         const {data} = await updateCoverPicture(uploadImagesRes[0].url, user.token);
+         console.log("data: ", data)
+         await createPost("cover", null, null, uploadImagesRes, user.id, user.token);
+         coverPictureRef.current.src = `${uploadImagesRes[0]?.url}`;
+         setCoverPicture([]);
+         setLoading(false);
+      } catch (error) {
+         setLoading(false);
+         setError(error.response.data.message);
+      }
+   }
+
    return (
       <div className="profile_cover" ref={coverRef}>
          {
@@ -43,7 +74,9 @@ const Cover = ({cover, visitor}) => {
                </div>
                <div className="save_changes_right">
                   <button className="blue_btn opacity_btn">Cancel</button>
-                  <button className="blue_btn">Save changes</button>
+                  <button className="blue_btn" onClick={updateCoverHandler}>
+                     {loading ? <PulseLoader color="#fff" size="5px"/> : "Save changes"}
+                  </button>
                </div>
             </div>
          }
@@ -73,7 +106,7 @@ const Cover = ({cover, visitor}) => {
          }
          {
             cover &&
-            <img src={cover} className="cover" alt="cover"/>
+            <img src={cover} className="cover" alt="cover" ref={coverPictureRef}/>
          }
          {
             !visitor &&

@@ -2,7 +2,7 @@ import API from "./api";
 
 API.interceptors.response.use(
    response => {
-      console.log("Returning response: ", response)
+      // console.log("Returning response: ", response)
       return response;
    },
    error => {

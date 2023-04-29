@@ -61,6 +61,7 @@ const UpdateProfilePicture = ({image, setImage, error, setError, setShow, profil
    const updateProfilePictureHandler = async () => {
       try {
          setLoading(true);
+         // TODO: use reusable function UseImageCropperHandler
          let img = await getCroppedImageHandler()
          let blob = await fetch(img).then((b) => b.blob());
          const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`;
