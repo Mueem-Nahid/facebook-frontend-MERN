@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import getCroppedImage from "../../../utils/getCroppedImage";
 import {updateProfilePicture} from "../../../apiServices/profile";
 import {createPost, uploadImages} from "../../../apiServices/post";
-import handleImageCrop from "../../../utils/imageCropperHandler";
 
 
 const UpdateProfilePicture = ({image, setImage, error, setError, setShow, profileRef}) => {
