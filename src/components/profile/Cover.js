@@ -7,6 +7,7 @@ import {updateCoverPicture} from "../../apiServices/profile";
 import {handleImages, handleOpenInput} from "../../utils/utils";
 import {createPost, uploadImages} from "../../apiServices/post";
 import useImageCropperHandler from "../../hooks/useImageCropperHandler";
+import handleImageCrop from "../../utils/imageCropperHandler";
 
 
 const Cover = ({user, cover, visitor}) => {
@@ -27,7 +28,7 @@ const Cover = ({user, cover, visitor}) => {
 
    useClickOutside(menuRef, () => setShowCoverMenu(false));
 
-   const handleImageCrop = useImageCropperHandler(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverPicture, setError);
+   // const handleImageCrop = useImageCropperHandler(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverPicture, setError);
 
    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
       setCroppedAreaPixels(croppedAreaPixels);
@@ -51,7 +52,8 @@ const Cover = ({user, cover, visitor}) => {
    const updateCoverHandler = async () => {
       try {
          setLoading(true);
-         const img = await handleImageCrop();
+         // const img = await handleImageCrop();
+         const img = await handleImageCrop(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverPicture, setError);
          const blob = await fetch(img).then((b) => b.blob());
          const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_COVER_PICTURE_FOLDER_NAME}`;
          const formData = new FormData();

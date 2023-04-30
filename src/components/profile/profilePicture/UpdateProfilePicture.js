@@ -1,12 +1,13 @@
 import Cookies from "js-cookie";
 import Cropper from "react-easy-crop";
 import {PulseLoader} from "react-spinners";
-import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
 import getCroppedImage from "../../../utils/getCroppedImage";
 import {updateProfilePicture} from "../../../apiServices/profile";
 import {createPost, uploadImages} from "../../../apiServices/post";
+import handleImageCrop from "../../../utils/imageCropperHandler";
 
 
 const UpdateProfilePicture = ({image, setImage, error, setError, setShow, profileRef}) => {
@@ -61,7 +62,7 @@ const UpdateProfilePicture = ({image, setImage, error, setError, setShow, profil
    const updateProfilePictureHandler = async () => {
       try {
          setLoading(true);
-         // TODO: use reusable function UseImageCropperHandler
+         // TODO: use reusable function handleImageCrop if possible
          let img = await getCroppedImageHandler()
          let blob = await fetch(img).then((b) => b.blob());
          const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_PROFILE_PICTURE_FOLDER_NAME}`;
