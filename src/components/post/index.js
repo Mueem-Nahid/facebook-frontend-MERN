@@ -32,16 +32,16 @@ const Post = ({post, user, profile}) => {
                         {post?.type === "profilePicture" &&
                            `updated ${post?.user?.gender === "male" ? "his" : "her"} profile picture`
                         }
-                        {post?.type === "coverPhoto" &&
+                        {post?.type === "cover" &&
                            `updated ${post?.user?.gender === "male" ? "his" : "her"} cover photo`
                         }
                      </div>
                   </div>
                   <div className="post_profile_privacy_date">
-                     <Moment fromNow interval={60}>
+                     <Moment fromNow interval={60} style={{ marginRight: '5px' }}>
                         {post?.createdAt}
                      </Moment>
-                     . <Public color={publicIconColor}/>
+                     <Public color={publicIconColor}/>
                   </div>
                </div>
             </Link>
@@ -88,7 +88,7 @@ const Post = ({post, user, profile}) => {
                         <img src={post?.images[0]?.url} className="post_updated_picture" alt=""/>
                      </div> :
                      <div className="post_cover_wrap">
-
+                        <img src={post.images[0]?.url} alt="cover"/>
                      </div>
          }
          <div className="post_infos">

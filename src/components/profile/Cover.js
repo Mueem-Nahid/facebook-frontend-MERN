@@ -10,7 +10,6 @@ import useImageCropperHandler from "../../hooks/useImageCropperHandler";
 
 
 const Cover = ({user, cover, visitor}) => {
-   const [coverImage, setCoverImage] = useState(cover);
    const [showCoverMenu, setShowCoverMenu] = useState(false);
    const [coverPicture, setCoverPicture] = useState([]);
    const [error, setError] = useState("");
@@ -19,61 +18,78 @@ const Cover = ({user, cover, visitor}) => {
    const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
    const [coverImageWidth, setCoverImageWidth] = useState(0);
    const [loading, setLoading] = useState(false);
+   const [showSaveButton, setShowSaveButton] = useState(false);
 
    const menuRef = useRef(null);
    const refInput = useRef(null);
    const coverRef = useRef(null);
    const coverPictureRef = useRef(null);
+
    useClickOutside(menuRef, () => setShowCoverMenu(false));
 
-   const handleImageCrop = useImageCropperHandler(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverImage, setError);
+   const handleImageCrop = useImageCropperHandler(coverPicture, croppedAreaPixels, setZoom, setCrop, setCoverPicture, setError);
 
    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
       setCroppedAreaPixels(croppedAreaPixels);
    }, []);
 
    const handleImageInput = (e) => {
-      handleImages(e, setError, setCoverPicture)
+      handleImages(e, setError, setCoverPicture);
+      setShowSaveButton(true);
    };
 
    useEffect(() => {
       setCoverImageWidth(coverRef.current.clientWidth);
    }, [window.innerWidth]);
 
+   const handleSaveButton = () => {
+      setShowSaveButton(false);
+      setCoverPicture([]);
+      setShowCoverMenu(false);
+   }
+
    const updateCoverHandler = async () => {
       try {
          setLoading(true);
-         let img = await handleImageCrop();
-         let blob = await fetch(img).then((b) => b.blob());
+         const img = await handleImageCrop();
+         const blob = await fetch(img).then((b) => b.blob());
          const path = `${process.env.REACT_APP_CLOUDINARY_FOLDER_NAME}/${user.username}/${process.env.REACT_APP_CLOUDINARY_COVER_PICTURE_FOLDER_NAME}`;
-         let formData = new FormData();
+         const formData = new FormData();
          formData.append("file", blob);
          formData.append("path", path);
-         const uploadImagesRes = await uploadImages(formData, path, user.token);
-         console.log(uploadImagesRes)
-         const {data} = await updateCoverPicture(uploadImagesRes[0].url, user.token);
-         console.log("data: ", data)
-         await createPost("cover", null, null, uploadImagesRes, user.id, user.token);
-         coverPictureRef.current.src = `${uploadImagesRes[0]?.url}`;
+         const [uploadRes] = await uploadImages(formData, path, user.token);
+         const coverUrl = uploadRes?.url;
+         await Promise.all([
+            updateCoverPicture(coverUrl, user.token),
+            createPost("cover", null, null, [uploadRes], user.id, user.token),
+         ]);
+         // Assign ref to the img element
+         coverPictureRef.current = new Image();
+         coverPictureRef.current.onload = () => {
+            coverPictureRef.current.src = coverUrl;
+         }
+         coverPictureRef.current.src = coverUrl;
          setCoverPicture([]);
+         setShowSaveButton(false);
          setLoading(false);
+         setShowCoverMenu(false);
       } catch (error) {
          setLoading(false);
-         setError(error.response.data.message);
+         setError(error?.response?.data?.message || error?.message);
       }
-   }
+   };
 
    return (
       <div className="profile_cover" ref={coverRef}>
          {
-            coverPicture.length !== 0 &&
+            showSaveButton &&
             <div className="save_changes_cover">
                <div className="save_changes_left">
                   <i className="public_icon"></i>
                   Your cover photo is public
                </div>
                <div className="save_changes_right">
-                  <button className="blue_btn opacity_btn">Cancel</button>
+                  <button className="blue_btn opacity_btn" onClick={handleSaveButton}>Cancel</button>
                   <button className="blue_btn" onClick={updateCoverHandler}>
                      {loading ? <PulseLoader color="#fff" size="5px"/> : "Save changes"}
                   </button>
@@ -89,7 +105,7 @@ const Cover = ({user, cover, visitor}) => {
                <button className="blue_btn" onClick={() => setError("")}>Try again</button>
             </div>
          }
-         {coverPicture &&
+         {coverPicture?.length > 0 &&
             <div className="cover_cropper">
                <Cropper
                   image={coverPicture}
@@ -105,11 +121,11 @@ const Cover = ({user, cover, visitor}) => {
             </div>
          }
          {
-            cover &&
+            cover && coverPicture.length === 0 &&
             <img src={cover} className="cover" alt="cover" ref={coverPictureRef}/>
          }
          {
-            !visitor &&
+            !visitor && !coverPicture?.length &&
             <div className="update_cover_wrapper">
                <div className="open_cover_update" onClick={() => setShowCoverMenu((prev) => !prev)}>
                   <i className="camera_filled_icon"></i>
